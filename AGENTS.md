@@ -17,11 +17,20 @@ Before editing any file, you MUST reply with:
 
 Do not modify any file until the customer replies exactly: `APPROVE PLAN`.
 
+### Visual check — Required for website changes (before safety checks)
+For any change that affects what the website looks like (text, images, layout, styles):
+1) Start the website locally (`npm run dev`).
+2) Take “before” screenshots with Playwright (save under `output/playwright/`).
+3) Make the approved change.
+4) Take “after” screenshots with Playwright (save under `output/playwright/`).
+5) Ask the customer to open the page in their own browser to confirm it looks right (extra safety).
+
 ### Gate 2 — Publish approval (before committing/pushing)
 After implementing the approved plan, you MUST:
 1) Summarize what changed (bullet list)
-2) Explain how to preview locally (`npm run dev`) and what to check
-3) Run required checks (see “Validation” below) and report results
+2) Share what to check in the screenshots (before/after) and explain how to preview locally (`npm run dev`)
+3) Ask the customer to open the page and confirm it looks right
+4) Run required checks (see “Validation” below) and report results
 4) Ask: **Reply `APPROVE PUBLISH` to commit & push to `main`, or tell me changes.**
 
 Do not commit or push until the customer replies exactly: `APPROVE PUBLISH`.
@@ -66,9 +75,21 @@ See:
 - Keep styling consistent (Tailwind utility classes)
 
 ### 2) Add/replace an image
-- Ask for: image file, placement, and alt text
-- Put new files in `public/images/`
-- Reference via `withBasePath('/images/<file>')`
+- Use non-technical language. When the customer says “replace this picture with this picture”, your first response must include:
+  - “Please put the new picture file into the `images_to_update` folder and tell me the file name.”
+  - Ask where it should appear (page + location).
+- Workflow:
+  - Customer drops **one** image file into `images_to_update/` (root folder).
+  - You rename it to the website standard format: `page-location.<ext>` (page + location, lowercase, dashes).
+    - Examples: `contact-top-right.png`, `about-hero.jpg`, `lessons-hero.png`
+  - You move/copy it into `public/images/` and update the page/component to use it.
+  - For GitHub Pages basePath compatibility, reference via `withBasePath('/images/<file>')` from `lib/base-path.ts` for `<img src>`.
+- Alt text (accessibility):
+  - Default: choose a short, plain description yourself (1 sentence, no marketing).
+  - If the customer provides alt text, use theirs.
+- Safety:
+  - Do not leave the customer’s original file name in the website. Always rename to the standard format.
+  - Do not edit what’s inside the picture (remove text, retouch, etc.) unless the customer explicitly asks.
 
 ### 3) Create a new page
 - Ask for: slug, nav label (optional), page title, meta description, sections
@@ -89,4 +110,3 @@ See:
 - Only push after `APPROVE PUBLISH`.
 - Prefer a single, clear commit message: `Update: <short summary>`.
 </INSTRUCTIONS>
-

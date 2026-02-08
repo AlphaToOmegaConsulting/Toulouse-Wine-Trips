@@ -2,9 +2,11 @@
 
 import React, { useCallback, useEffect } from 'react';
 import Script from 'next/script';
+import { withBasePath } from '@/lib/base-path';
 
 const Booking: React.FC = () => {
-  const contactImage = '/images/contact-me-top-right.png';
+  const contactImage = withBasePath('/images/booking-top-right.png');
+  const contactImageAlt = 'Illustration of an online Japanese lesson on a desk';
 
   const initTallyEmbeds = useCallback(() => {
     // Mirrors Tally's recommended snippet:
@@ -65,11 +67,11 @@ const Booking: React.FC = () => {
             <div className="w-full lg:w-1/3 relative group">
               <div className="absolute -inset-4 bg-primary/5 rounded-[2rem] rotate-3 transition-transform group-hover:rotate-6 duration-500"></div>
 
-              <div className="relative z-10 aspect-[2/3] overflow-hidden rounded-[2rem] shadow-2xl border-4 border-white">
+              <div className="relative z-10 aspect-square overflow-hidden rounded-[2rem] shadow-2xl border-4 border-white">
                 <img
                   src={contactImage}
-                  alt="Contact me illustration"
-                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                  alt={contactImageAlt}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
 

@@ -26,6 +26,7 @@ To let it proceed, reply exactly:
 ### Step 2 — Review + publish
 After the agent implements the change, it will:
 - summarize the updates,
+- show “before and after” screenshots for a quick visual check,
 - tell you how to preview locally,
 - run checks (`npm run lint` and `npm run build`),
 - then ask if it may publish.
@@ -36,9 +37,28 @@ To publish to GitHub Pages, reply exactly:
 ## What you may be asked to provide
 Depending on the request:
 - The exact text you want to appear
-- Images (files) + where to place them + alt text
+- A new picture file + where it should appear
 - A page title + short meta description (1–2 sentences)
 - For a new page: sections you want and any links/buttons
+
+## Replacing a picture (easy)
+If you want to change a picture on the website:
+
+1) Put the new picture file into the `images_to_update` folder (this folder is at the top level of the website folder).  
+2) Tell the agent:
+   - the file name you added
+   - where it should appear (page + location), for example: “Contact page, top-right picture”
+
+The agent will take care of the rest: rename it to the website’s standard format (page + location), place it in the right website folder, and update the page.
+
+Notes:
+- Please upload **one file per request**
+- Best formats: `.png` or `.jpg`
+
+## Quick visual check (extra safety)
+For changes that affect what you see on the website (text, pictures, layout):
+- The agent will start the website locally and take “before and after” screenshots.
+- You will also be asked to open the page in your own browser to confirm it looks right.
 
 ## How to preview changes locally
 1) Open a terminal in the website folder.
@@ -57,4 +77,3 @@ If something looks wrong after publishing, tell the agent:
 - what page is wrong,
 - what you expected instead,
 - and (if possible) a screenshot.
-
