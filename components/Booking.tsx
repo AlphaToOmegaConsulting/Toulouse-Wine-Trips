@@ -4,15 +4,17 @@ import React, { useCallback, useEffect } from 'react';
 import Script from 'next/script';
 import { withBasePath } from '@/lib/base-path';
 import PageHero from '@/components/PageHero';
+import { bookingCopy, getLocalizedPath, type Lang } from '@/lib/i18n';
 
-const Booking: React.FC = () => {
+type BookingProps = {
+  lang?: Lang;
+};
+
+const Booking: React.FC<BookingProps> = ({ lang = 'en' }) => {
   const contactImage = withBasePath('/images/booking-top-right.png');
   const contactImageAlt = 'Illustration of an online Japanese lesson on a desk';
 
   const initTallyEmbeds = useCallback(() => {
-    // Mirrors Tally's recommended snippet:
-    // - set iframe.src = iframe.dataset.tallySrc for iframes missing src
-    // - call Tally.loadEmbeds() when available
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const w = window as any;
@@ -27,7 +29,7 @@ const Booking: React.FC = () => {
           iframe.src = iframe.dataset.tallySrc ?? '';
         });
     } catch {
-      // Non-fatal: if the embed init fails, the rest of the page should still render.
+      // Non-fatal: keep page rendering even if embed init fails.
     }
   }, []);
 
@@ -44,31 +46,30 @@ const Booking: React.FC = () => {
         onError={initTallyEmbeds}
       />
       <PageHero
-        eyebrowJa="お問い合わせ"
-        eyebrowEn="Contact Me"
+        eyebrowJa={bookingCopy.eyebrowJa()}
+        eyebrowEn={bookingCopy.eyebrowEn(lang)}
         title={
           <>
-            Book Your Trial <span className="text-primary">Lesson.</span>
+            {bookingCopy.titlePrefix(lang)} <span className="text-primary">{bookingCopy.titleAccent(lang)}</span>
           </>
         }
-        description="Tell me your level, goals, and preferred format. I will help you choose a practical lesson plan that fits your needs."
+        description={bookingCopy.description(lang)}
         imageSrc={contactImage}
         imageAlt={contactImageAlt}
         imageSide="left"
         ctas={[
-          { href: '/booking#inquiry-form', label: 'Send Inquiry', variant: 'primary' },
-          { href: '/lessons', label: 'View Lessons & Fees', variant: 'secondary' },
+          { href: getLocalizedPath(lang, '/booking#inquiry-form'), label: bookingCopy.sendInquiry(lang), variant: 'primary' },
+          { href: getLocalizedPath(lang, '/lessons'), label: bookingCopy.viewLessons(lang), variant: 'secondary' },
         ]}
       />
 
       <main className="site-content site-x section-y text-left" data-reveal>
-
         <div className="flex flex-col lg:flex-row lg:items-stretch gap-16">
           <div className="w-full lg:w-2/3" data-reveal>
             <div id="inquiry-form" className="bg-white p-10 rounded-2xl border border-gray-100 shadow-2xl shadow-gray-200/50" data-reveal>
               <h3 className="text-2xl font-bold mb-8 flex items-center gap-3 text-slate-900">
                 <span className="w-2 h-8 bg-primary rounded-full"></span>
-                Inquiry Form
+                {bookingCopy.inquiryForm(lang)}
               </h3>
               <iframe
                 data-tally-src="https://tally.so/embed/jaQa76?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
@@ -78,7 +79,7 @@ const Booking: React.FC = () => {
                 frameBorder="0"
                 marginHeight={0}
                 marginWidth={0}
-                title="Book Your Trial Lesson"
+                title={bookingCopy.formTitle(lang)}
               />
             </div>
           </div>
@@ -91,14 +92,14 @@ const Booking: React.FC = () => {
             <div className="bg-slate-50 p-10 rounded-2xl border border-slate-200" data-reveal>
               <div className="flex items-center gap-3 mb-6">
                 <span className="material-symbols-outlined text-primary">contact_support</span>
-                <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">Direct Info</h3>
+                <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">{bookingCopy.directInfo(lang)}</h3>
               </div>
 
               <div className="space-y-6">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
                     <span className="material-symbols-outlined text-slate-400 text-sm">mail</span>
-                    <p className="text-slate-900 font-bold uppercase tracking-widest text-[10px]">Email Address</p>
+                    <p className="text-slate-900 font-bold uppercase tracking-widest text-[10px]">{bookingCopy.emailAddress(lang)}</p>
                   </div>
                   <a href="mailto:contact@manaka-japanese.fr" className="text-primary font-bold hover:underline">
                     contact@manaka-japanese.fr
@@ -108,20 +109,20 @@ const Booking: React.FC = () => {
                 <div>
                   <div className="flex items-center gap-2 mb-3">
                     <span className="material-symbols-outlined text-slate-400 text-sm">schedule</span>
-                    <p className="text-slate-900 font-bold uppercase tracking-widest text-[10px]">Business Hours</p>
+                    <p className="text-slate-900 font-bold uppercase tracking-widest text-[10px]">{bookingCopy.businessHours(lang)}</p>
                   </div>
                   <ul className="space-y-2 text-sm text-slate-500 font-medium">
                     <li className="flex justify-between border-b border-slate-200 pb-1">
-                      <span>Mon - Fri</span>
+                      <span>{bookingCopy.mondayFriday(lang)}</span>
                       <span className="text-slate-900 font-bold">10:00 - 18:00</span>
                     </li>
                     <li className="flex justify-between border-b border-slate-200 pb-1">
-                      <span>Saturday</span>
+                      <span>{bookingCopy.saturday(lang)}</span>
                       <span className="text-slate-900 font-bold">10:00 - 16:00</span>
                     </li>
                     <li className="flex justify-between">
-                      <span>Sunday</span>
-                      <span className="text-slate-900 font-bold">Closed</span>
+                      <span>{bookingCopy.sunday(lang)}</span>
+                      <span className="text-slate-900 font-bold">{bookingCopy.closed(lang)}</span>
                     </li>
                   </ul>
                 </div>
@@ -135,10 +136,10 @@ const Booking: React.FC = () => {
             >
               <div className="flex items-center gap-3 mb-4">
                 <span className="material-symbols-outlined text-primary">bolt</span>
-                <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">Fast Response</h3>
+                <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">{bookingCopy.fastResponse(lang)}</h3>
               </div>
               <p className="text-slate-500 font-medium leading-relaxed">
-                I typically respond within <span className="text-primary font-bold">24 hours</span>. Please double-check your email address so I can contact you.
+                {bookingCopy.fastResponseText1(lang)} <span className="text-primary font-bold">{bookingCopy.fastResponseText2(lang)}</span>{bookingCopy.fastResponseText3(lang)}
               </p>
             </div>
 
@@ -149,11 +150,9 @@ const Booking: React.FC = () => {
             >
               <div className="flex items-center gap-3 mb-4">
                 <span className="material-symbols-outlined text-slate-400">place</span>
-                <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">Lesson Locations</h3>
+                <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight">{bookingCopy.locations(lang)}</h3>
               </div>
-              <p className="text-slate-500 text-sm font-medium leading-relaxed">
-                In-person lessons are available at my home studio, cafes, or public libraries in central Toulouse, plus online lessons.
-              </p>
+              <p className="text-slate-500 text-sm font-medium leading-relaxed">{bookingCopy.locationsDesc(lang)}</p>
               <div className="mt-6 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
                 <iframe
                   src="https://www.google.com/maps?q=Toulouse,+France&z=13&output=embed"
@@ -162,7 +161,7 @@ const Booking: React.FC = () => {
                   style={{ border: 0 }}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Map of lesson locations in Toulouse"
+                  title={bookingCopy.mapTitle(lang)}
                 />
               </div>
             </div>

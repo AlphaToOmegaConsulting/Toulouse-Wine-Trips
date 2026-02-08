@@ -2,50 +2,23 @@ import React from 'react';
 import Link from 'next/link';
 import { withBasePath } from '@/lib/base-path';
 import PageHero from '@/components/PageHero';
+import {
+  getLocalizedPath,
+  lessonsCopy,
+  lessonsFaq,
+  lessonsFormats,
+  lessonsIncludedItems,
+  type Lang,
+} from '@/lib/i18n';
 
-const Lessons: React.FC = () => {
-  const lessonFormats = [
-    {
-      icon: 'person',
-      title: 'Private 1:1 Lessons',
-      subtitle: 'Customized for your level',
-      description:
-        'Personalized 60-minute lessons for beginners, intermediate, or advanced learners. We focus on your goals and pace.',
-      pricing: ['EUR 35 / hour'],
-    },
-    {
-      icon: 'groups',
-      title: 'Small Group Lessons',
-      subtitle: 'Conversation and shared progress',
-      description:
-        'Structured small-group lessons with practical conversation and guided practice in a friendly setting.',
-      pricing: ['EUR 20 / hour per student'],
-    },
-    {
-      icon: 'laptop_mac',
-      title: 'Online Lessons',
-      subtitle: 'Flexible and practical',
-      description:
-        'Online lessons in English for students who prefer remote learning with clear structure and regular feedback.',
-      pricing: ['EUR 30 / hour'],
-    },
-    {
-      icon: 'child_care',
-      title: 'Kids Classes',
-      subtitle: 'Fun and engaging',
-      description:
-        'Age-appropriate lessons designed to keep children and teens motivated through interactive activities.',
-      pricing: ['EUR 15 / hour'],
-    },
-  ];
+type LessonsProps = {
+  lang?: Lang;
+};
 
-  const includedItems = [
-    'Trial lesson and level check',
-    'Lesson plan based on your level and goals',
-    'Textbooks and original Japanese learning materials',
-    'Private lesson customization or group conversation structure',
-    'Progress review over each 3-month period',
-  ];
+const Lessons: React.FC<LessonsProps> = ({ lang = 'en' }) => {
+  const lessonFormats = lessonsFormats(lang);
+  const includedItems = lessonsIncludedItems(lang);
+  const faqItems = lessonsFaq(lang);
 
   const faqIllustration = withBasePath('/images/faq-illustration.png');
   const heroImage = withBasePath('/images/lessons-hero.png');
@@ -53,20 +26,20 @@ const Lessons: React.FC = () => {
   return (
     <div className="bg-white">
       <PageHero
-        eyebrowJa="レッスンと料金"
-        eyebrowEn="Lessons & Fees"
+        eyebrowJa={lessonsCopy.eyebrowJa()}
+        eyebrowEn={lessonsCopy.eyebrowEn(lang)}
         title={
           <>
-            Japanese Lessons in <span className="text-primary">Toulouse.</span>
+            {lessonsCopy.titlePrefix(lang)} <span className="text-primary">{lessonsCopy.titleAccent(lang)}</span>
           </>
         }
-        description="Beginner to advanced lessons, JLPT N5-N3 preparation, and engaging classes for kids and teens. All lessons are taught in English."
+        description={lessonsCopy.description(lang)}
         imageSrc={heroImage}
         imageAlt="Japanese lesson materials"
         imageSide="right"
         ctas={[
-          { href: '/booking', label: 'Book a Trial Lesson', variant: 'primary' },
-          { href: '/booking', label: 'Ask a Question', variant: 'secondary' },
+          { href: getLocalizedPath(lang, '/booking'), label: lessonsCopy.ctaPrimary(lang), variant: 'primary' },
+          { href: getLocalizedPath(lang, '/booking'), label: lessonsCopy.ctaSecondary(lang), variant: 'secondary' },
         ]}
       />
 
@@ -77,15 +50,12 @@ const Lessons: React.FC = () => {
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
                   <div className="h-[2px] w-12 bg-primary"></div>
-                  <span className="text-primary font-black tracking-[0.3em] text-xs uppercase">What You Get</span>
+                  <span className="text-primary font-black tracking-[0.3em] text-xs uppercase">{lessonsCopy.whatYouGet(lang)}</span>
                 </div>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-[0.95] tracking-tight uppercase font-display">
-                  Real Lessons, <br />Clear Structure
+                  {lessonsCopy.realLessonsTitle1(lang)} <br />{lessonsCopy.realLessonsTitle2(lang)}
                 </h2>
-                <p className="text-slate-500 text-lg font-medium max-w-xl leading-relaxed">
-                  60-minute classes with a practical approach. Most learners notice clear progress in around 3 months,
-                  depending on their starting level and consistency.
-                </p>
+                <p className="text-slate-500 text-lg font-medium max-w-xl leading-relaxed">{lessonsCopy.realLessonsDesc(lang)}</p>
               </div>
             </div>
 
@@ -97,10 +67,10 @@ const Lessons: React.FC = () => {
               <div className="space-y-6">
                 <div className="flex items-center gap-3">
                   <div className="h-[2px] w-12 bg-primary"></div>
-                  <p className="text-primary font-black tracking-[0.3em] text-xs uppercase">What Is Included</p>
+                  <p className="text-primary font-black tracking-[0.3em] text-xs uppercase">{lessonsCopy.includedEyebrow(lang)}</p>
                 </div>
                 <h3 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 leading-[1] tracking-tight uppercase font-display">
-                  Included in <br />Every Plan
+                  {lessonsCopy.includedTitle1(lang)} <br />{lessonsCopy.includedTitle2(lang)}
                 </h3>
               </div>
 
@@ -125,7 +95,7 @@ const Lessons: React.FC = () => {
           <div className="space-y-6" data-reveal>
             <div className="flex items-center gap-3">
               <div className="h-[2px] w-12 bg-primary"></div>
-              <span className="text-primary font-black tracking-[0.3em] text-xs uppercase">Lesson Formats</span>
+              <span className="text-primary font-black tracking-[0.3em] text-xs uppercase">{lessonsCopy.lessonFormatsEyebrow(lang)}</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 text-left">
@@ -162,10 +132,10 @@ const Lessons: React.FC = () => {
                       ))}
                     </ul>
                     <Link
-                      href="/booking"
+                      href={getLocalizedPath(lang, '/booking')}
                       className="inline-flex items-center gap-2 text-base font-black text-primary uppercase tracking-widest pt-2 hover:gap-4 transition-all mt-auto"
                     >
-                      Check Availability <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                      {lessonsCopy.checkAvailability(lang)} <span className="material-symbols-outlined text-sm">arrow_forward</span>
                     </Link>
                   </div>
                 </div>
@@ -186,12 +156,10 @@ const Lessons: React.FC = () => {
               <div className="space-y-8">
                 <div className="flex items-center gap-4">
                   <div className="w-16 h-1 bg-primary rounded-full"></div>
-                  <h2 className="text-primary font-black uppercase tracking-[0.3em] text-xs">Help & Support</h2>
+                  <h2 className="text-primary font-black uppercase tracking-[0.3em] text-xs">{lessonsCopy.faqEyebrow(lang)}</h2>
                 </div>
-                <h3 className="text-slate-900 text-6xl font-black uppercase tracking-tighter font-display leading-[0.9]">FAQ</h3>
-                <p className="text-slate-500 text-xl font-medium leading-relaxed max-w-md">
-                  Key details before you start your trial lesson.
-                </p>
+                <h3 className="text-slate-900 text-6xl font-black uppercase tracking-tighter font-display leading-[0.9]">{lessonsCopy.faqTitle()}</h3>
+                <p className="text-slate-500 text-xl font-medium leading-relaxed max-w-md">{lessonsCopy.faqDesc(lang)}</p>
               </div>
               <div className="relative group max-w-md">
                 <div className="absolute -inset-6 bg-primary/5 rounded-[4rem] blur-3xl group-hover:bg-primary/10 transition-all duration-700"></div>
@@ -209,28 +177,7 @@ const Lessons: React.FC = () => {
               data-reveal
               style={{ '--reveal-delay': '120ms' } as React.CSSProperties}
             >
-              {[
-                {
-                  q: 'Where do in-person lessons take place?',
-                  a: 'In-person lessons can be held at my home studio, cafes, or public libraries in central Toulouse.',
-                },
-                {
-                  q: 'Which students do you teach?',
-                  a: 'I teach kids, teens, adults, and senior learners from beginner to advanced levels.',
-                },
-                {
-                  q: 'Which JLPT levels do you offer?',
-                  a: 'I currently offer JLPT preparation for N5, N4, and N3.',
-                },
-                {
-                  q: 'What language are lessons taught in?',
-                  a: 'Lessons are taught in English.',
-                },
-                {
-                  q: 'How does the trial lesson work?',
-                  a: 'The trial lesson helps assess your level, discuss your goals, and choose the best lesson format for you.',
-                },
-              ].map((faq, idx) => (
+              {faqItems.map((faq, idx) => (
                 <details
                   key={idx}
                   className="group bg-white rounded-[2.5rem] border border-orange-100/40 shadow-sm hover:shadow-md transition-all duration-500 open:shadow-xl open:border-primary/10 overflow-hidden"
@@ -251,12 +198,12 @@ const Lessons: React.FC = () => {
                 </details>
               ))}
               <div className="mt-16 p-10 bg-white rounded-[3rem] border border-dashed border-slate-200 text-center">
-                <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px] mb-4">Need specific information?</p>
+                <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px] mb-4">{lessonsCopy.needInfo(lang)}</p>
                 <Link
-                  href="/booking"
+                  href={getLocalizedPath(lang, '/booking')}
                   className="text-primary font-black uppercase tracking-[0.2em] text-sm hover:text-slate-900 transition-colors"
                 >
-                  Contact Me Directly
+                  {lessonsCopy.contactDirectly(lang)}
                 </Link>
               </div>
             </div>
@@ -275,17 +222,15 @@ const Lessons: React.FC = () => {
             </div>
             <div className="flex flex-col gap-4 text-center relative z-10 max-w-2xl">
               <h2 className="text-white text-4xl md:text-5xl font-black uppercase tracking-tighter font-display leading-none">
-                Ready to start <br />your Japanese lessons?
+                {lessonsCopy.finalCtaTitle1(lang)} <br />{lessonsCopy.finalCtaTitle2(lang)}
               </h2>
-              <p className="text-xl font-medium text-white/90 max-w-xl mx-auto">
-                Book a trial lesson and get a plan based on your real goals.
-              </p>
+              <p className="text-xl font-medium text-white/90 max-w-xl mx-auto">{lessonsCopy.finalCtaDesc(lang)}</p>
             </div>
             <Link
-              href="/booking"
+              href={getLocalizedPath(lang, '/booking')}
               className="btn-lift bg-white text-primary px-12 py-5 rounded-2xl font-black text-lg uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all shadow-2xl active:scale-95 relative z-10 whitespace-nowrap"
             >
-              Book Your Trial Lesson
+              {lessonsCopy.finalCtaButton(lang)}
             </Link>
           </div>
         </div>

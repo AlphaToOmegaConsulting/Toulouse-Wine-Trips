@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   title: 'Japanese Lessons in Toulouse',
   description:
     'Personalized Japanese lessons in Toulouse with a native teacher. Private, group, and online formats for all levels.',
-  alternates: { canonical: '/' },
+  alternates: { canonical: '/en' },
 };
 
 export default function HomePage() {
-  return <Hero />;
+  return <Hero lang="en" />;
 }
