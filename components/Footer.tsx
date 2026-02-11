@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import { withBasePath } from '@/lib/base-path';
-import { footerCopy, getLangFromPathname, navCopy } from '@/lib/i18n';
+import { footerCopy, getLangFromPathname, getLocalizedPath, navCopy } from '@/lib/i18n';
 
 const Footer: React.FC = () => {
   const pathname = usePathname();
@@ -43,7 +43,9 @@ const Footer: React.FC = () => {
           <p className="text-gray-400 max-w-sm mb-8 leading-relaxed">{footerCopy.description(currentLang)}</p>
           <div className="flex gap-4">
             <button className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300">
-              <span className="material-symbols-outlined text-xl">public</span>
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2a10 10 0 1 0 10 10A10.01 10.01 0 0 0 12 2zm7.93 9h-3.09a15.6 15.6 0 0 0-1.36-5A8.03 8.03 0 0 1 19.93 11zM12 4c.93 0 2.32 2.05 2.84 7H9.16C9.68 6.05 11.07 4 12 4zM6.52 6a15.6 15.6 0 0 0-1.36 5H2.07A8.03 8.03 0 0 1 6.52 6zM4.07 13h3.09a15.6 15.6 0 0 0 1.36 5A8.03 8.03 0 0 1 4.07 13zM12 20c-.93 0-2.32-2.05-2.84-7h5.68C14.32 17.95 12.93 20 12 20zm3.48-2a15.6 15.6 0 0 0 1.36-5h3.09a8.03 8.03 0 0 1-4.45 5z" />
+              </svg>
             </button>
             <button className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300">
               <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -51,7 +53,9 @@ const Footer: React.FC = () => {
               </svg>
             </button>
             <button className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300">
-              <span className="material-symbols-outlined text-xl">share</span>
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18 16a2.98 2.98 0 0 0-2.39 1.2l-6.16-3.08a3 3 0 0 0 0-2.24l6.16-3.08A3 3 0 1 0 15 7a2.9 2.9 0 0 0 .08.68L8.92 10.76a3 3 0 1 0 0 2.48l6.16 3.08A2.9 2.9 0 0 0 15 17a3 3 0 1 0 3-3z" />
+              </svg>
             </button>
           </div>
         </div>
@@ -76,14 +80,18 @@ const Footer: React.FC = () => {
           <h4 className="font-bold mb-8 text-white uppercase tracking-[0.2em] text-xs">{footerCopy.contactTitle(currentLang)}</h4>
           <ul className="space-y-6 text-gray-400">
             <li className="flex items-start gap-4">
-              <span className="material-symbols-outlined text-primary">location_on</span>
+              <svg className="w-6 h-6 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5z" />
+              </svg>
               <div>
                 <p className="text-white font-bold text-sm uppercase tracking-wider">{footerCopy.locationLabel(currentLang)}</p>
                 <p className="text-sm">{footerCopy.locationValue(currentLang)}</p>
               </div>
             </li>
             <li className="flex items-start gap-4">
-              <span className="material-symbols-outlined text-primary">mail</span>
+              <svg className="w-6 h-6 text-primary shrink-0 mt-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5z" />
+              </svg>
               <div>
                 <p className="text-white font-bold text-sm uppercase tracking-wider">{footerCopy.emailLabel(currentLang)}</p>
                 <p className="text-sm">contact@manaka-japanese.fr</p>
@@ -95,8 +103,12 @@ const Footer: React.FC = () => {
       <div className="site-content mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-sm">
         <p>{footerCopy.copyright(currentLang)}</p>
         <div className="flex gap-10">
-          <button className="hover:text-white transition-colors">{footerCopy.privacy(currentLang)}</button>
-          <button className="hover:text-white transition-colors">{footerCopy.terms(currentLang)}</button>
+          <Link href={getLocalizedPath(currentLang, '/privacy')} className="hover:text-white transition-colors">
+            {footerCopy.privacy(currentLang)}
+          </Link>
+          <Link href={getLocalizedPath(currentLang, '/terms')} className="hover:text-white transition-colors">
+            {footerCopy.terms(currentLang)}
+          </Link>
         </div>
       </div>
     </footer>

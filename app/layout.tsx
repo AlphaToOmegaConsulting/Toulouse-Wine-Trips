@@ -1,11 +1,27 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP, Noto_Serif_JP, Plus_Jakarta_Sans } from "next/font/google";
 import Footer from "@/components/Footer";
+import HtmlLangManager from "@/components/HtmlLangManager";
 import Navbar from "@/components/Navbar";
+import StructuredData from "@/components/StructuredData";
 import "./globals.css";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://manaka-japanese.fr";
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "frame-ancestors 'none'",
+  "object-src 'none'",
+  "script-src 'self' 'unsafe-inline' https://tally.so https://www.google.com https://www.googletagmanager.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "img-src 'self' data: blob: https://images.unsplash.com https://www.google.com https://www.gstatic.com",
+  "font-src 'self' data: https://fonts.gstatic.com",
+  "connect-src 'self' https://tally.so https://images.unsplash.com https://www.google-analytics.com",
+  "frame-src 'self' https://tally.so https://www.google.com",
+  "form-action 'self' https://tally.so",
+  "upgrade-insecure-requests",
+].join("; ");
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
@@ -57,14 +73,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
-          rel="stylesheet"
-        />
+        <meta httpEquiv="Content-Security-Policy" content={contentSecurityPolicy} />
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
+        <meta httpEquiv="X-Frame-Options" content="DENY" />
+        <meta httpEquiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
       </head>
       <body
         className={`${plusJakartaSans.variable} ${notoSansJp.variable} ${notoSerifJp.variable} antialiased bg-white text-slate-900`}
       >
+        <HtmlLangManager />
+        <StructuredData siteUrl={siteUrl} />
         <div className="min-h-screen flex flex-col font-sans selection:bg-primary/20">
           <Navbar />
           <ScrollReveal />
