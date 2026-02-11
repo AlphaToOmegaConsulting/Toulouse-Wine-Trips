@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { withBasePath } from '@/lib/base-path';
+import Icon from '@/components/Icon';
 import PageHero from '@/components/PageHero';
 import {
   aboutCopy,
@@ -33,8 +34,8 @@ const Journey: React.FC<JourneyProps> = ({ lang = 'en' }) => {
         imageAlt="Manaka portrait"
         imageSide="left"
         ctas={[
-          { href: getLocalizedPath(lang, '/booking'), label: aboutCopy.ctaButton(lang), variant: 'primary' },
-          { href: getLocalizedPath(lang, '/lessons'), label: aboutCopy.eyebrowEn(lang) === 'About Me' ? 'View Lessons & Fees' : 'レッスン・料金を見る', variant: 'secondary' },
+          { href: getLocalizedPath(lang, '/quote'), label: aboutCopy.ctaButton(lang), variant: 'primary' },
+          { href: getLocalizedPath(lang, '/tastings'), label: aboutCopy.eyebrowEn(lang) === 'About Me' ? 'View Lessons & Fees' : 'レッスン・料金を見る', variant: 'secondary' },
         ]}
       />
 
@@ -55,7 +56,7 @@ const Journey: React.FC<JourneyProps> = ({ lang = 'en' }) => {
               </div>
               <div className="relative">
                 <div className="absolute left-[-52px] top-2 bg-primary size-10 rounded-full flex items-center justify-center text-white shadow-xl z-10 border-4 border-white hidden md:flex">
-                  <span className="material-symbols-outlined text-sm">{timeline[0].icon}</span>
+                  <Icon name={timeline[0].icon} className="text-sm" />
                 </div>
                 <div
                   className="w-full h-64 bg-cover bg-center rounded-2xl shadow-xl transition-all duration-500 hover:scale-[1.02]"
@@ -71,7 +72,7 @@ const Journey: React.FC<JourneyProps> = ({ lang = 'en' }) => {
             >
               <div className="order-2 md:order-1 relative">
                 <div className="absolute right-[-52px] top-2 bg-primary size-10 rounded-full flex items-center justify-center text-white shadow-xl z-10 border-4 border-white hidden md:flex">
-                  <span className="material-symbols-outlined text-sm">{timeline[1].icon}</span>
+                  <Icon name={timeline[1].icon} className="text-sm" />
                 </div>
                 <div className="w-full h-64 bg-cover bg-center rounded-2xl shadow-xl transition-all duration-500 hover:scale-[1.02]" style={{ backgroundImage: `url('${withBasePath('/images/journey-exeter.png')}')` }}></div>
               </div>
@@ -94,7 +95,7 @@ const Journey: React.FC<JourneyProps> = ({ lang = 'en' }) => {
               </div>
               <div className="relative">
                 <div className="absolute left-[-52px] top-2 bg-primary size-10 rounded-full flex items-center justify-center text-white shadow-xl z-10 border-4 border-white hidden md:flex">
-                  <span className="material-symbols-outlined text-sm">{timeline[2].icon}</span>
+                  <Icon name={timeline[2].icon} className="text-sm" />
                 </div>
                 <div className="w-full h-64 bg-cover bg-center rounded-2xl shadow-xl transition-all duration-500 hover:scale-[1.02]" style={{ backgroundImage: `url('${withBasePath('/images/journey-toulouse.png')}')` }}></div>
               </div>
@@ -122,7 +123,7 @@ const Journey: React.FC<JourneyProps> = ({ lang = 'en' }) => {
                 style={{ '--reveal-delay': `${idx * 70}ms` } as React.CSSProperties}
               >
                 <div className="size-14 bg-primary/5 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-sm">
-                  <span className="material-symbols-outlined text-3xl">{item.icon}</span>
+                  <Icon name={item.icon} className="text-3xl" />
                 </div>
                 <div className="space-y-3">
                   <h3 className="text-xl font-black uppercase tracking-tight text-slate-900 leading-tight group-hover:text-primary transition-colors">{item.title}</h3>
@@ -148,7 +149,7 @@ const Journey: React.FC<JourneyProps> = ({ lang = 'en' }) => {
               <p className="text-xl font-medium text-white/90 mx-auto">{aboutCopy.ctaDescription(lang)}</p>
             </div>
             <Link
-              href={getLocalizedPath(lang, '/booking')}
+              href={getLocalizedPath(lang, '/quote')}
               className="btn-lift bg-white text-primary px-12 py-5 rounded-2xl font-black text-lg hover:bg-gray-50 transition-all shadow-2xl active:scale-95 relative z-10 uppercase tracking-widest"
             >
               {aboutCopy.ctaButton(lang)}

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import Icon from '@/components/Icon';
 import { withBasePath } from '@/lib/base-path';
 import { getHomePath, getLangFromPathname, getLocalizedPath, type Lang, navCopy } from '@/lib/i18n';
 
@@ -107,9 +108,7 @@ const Navbar: React.FC = () => {
             className="md:hidden p-2 text-slate-900"
             aria-label="Toggle menu"
           >
-            <span className="material-symbols-outlined text-3xl">
-              {isMenuOpen ? 'close' : 'menu'}
-            </span>
+            <Icon name={isMenuOpen ? 'close' : 'menu'} className="text-3xl" />
           </button>
         </div>
       </div>
