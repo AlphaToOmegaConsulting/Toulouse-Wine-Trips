@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
             <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
               <span className="text-white font-bold text-sm">M</span>
             </div>
-            <h2 className="text-3xl font-bold tracking-tight uppercase">Manaka<span className="text-primary">.</span>Japanese</h2>
+            <h2 className="text-3xl font-bold tracking-tight uppercase">Toulouse<span className="text-primary">.</span>Wine Trips</h2>
           </div>
           <p className="text-gray-400 max-w-sm mb-8 leading-relaxed">{footerCopy.description(currentLang)}</p>
           <div className="flex gap-4">

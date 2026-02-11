@@ -7,7 +7,7 @@ type LayoutProps = {
 };
 
 export function generateStaticParams() {
-  return [{ lang: 'en' }, { lang: 'ja' }];
+  return [{ lang: 'en' }, { lang: 'fr' }];
 }
 
 export default async function LangLayout({ children, params }: LayoutProps) {

@@ -1,67 +1,76 @@
-import type { Metadata } from "next";
-import { Noto_Sans_JP, Noto_Serif_JP, Plus_Jakarta_Sans } from "next/font/google";
-import Footer from "@/components/Footer";
-import HtmlLangManager from "@/components/HtmlLangManager";
-import Navbar from "@/components/Navbar";
-import StructuredData from "@/components/StructuredData";
-import "./globals.css";
-import ScrollReveal from "@/components/ScrollReveal";
+import type { Metadata } from 'next';
+import { Noto_Sans_JP, Noto_Serif_JP, Plus_Jakarta_Sans } from 'next/font/google';
+import Footer from '@/components/Footer';
+import HtmlLangManager from '@/components/HtmlLangManager';
+import Navbar from '@/components/Navbar';
+import StructuredData from '@/components/StructuredData';
+import './globals.css';
+import ScrollReveal from '@/components/ScrollReveal';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://manaka-japanese.fr";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://toulouse-wine-trips.fr';
+const isDev = process.env.NODE_ENV !== 'production';
+const scriptSrc = [
+  "'self'",
+  "'unsafe-inline'",
+  'https://tally.so',
+  'https://www.google.com',
+  'https://www.googletagmanager.com',
+  ...(isDev ? ["'unsafe-eval'"] : []),
+].join(' ');
 const contentSecurityPolicy = [
   "default-src 'self'",
   "base-uri 'self'",
   "frame-ancestors 'none'",
   "object-src 'none'",
-  "script-src 'self' 'unsafe-inline' https://tally.so https://www.google.com https://www.googletagmanager.com",
+  `script-src ${scriptSrc}`,
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "img-src 'self' data: blob: https://images.unsplash.com https://www.google.com https://www.gstatic.com",
   "font-src 'self' data: https://fonts.gstatic.com",
   "connect-src 'self' https://tally.so https://images.unsplash.com https://www.google-analytics.com",
   "frame-src 'self' https://tally.so https://www.google.com",
   "form-action 'self' https://tally.so",
-  "upgrade-insecure-requests",
-].join("; ");
+  'upgrade-insecure-requests',
+].join('; ');
 
 const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta",
-  subsets: ["latin"],
+  variable: '--font-plus-jakarta',
+  subsets: ['latin'],
 });
 
 const notoSansJp = Noto_Sans_JP({
-  variable: "--font-noto-sans-jp",
-  subsets: ["latin"],
-  weight: ["400", "700", "900"],
+  variable: '--font-noto-sans-jp',
+  subsets: ['latin'],
+  weight: ['400', '700', '900'],
 });
 
 const notoSerifJp = Noto_Serif_JP({
-  variable: "--font-noto-serif-jp",
-  subsets: ["latin"],
-  weight: ["400", "700", "900"],
+  variable: '--font-noto-serif-jp',
+  subsets: ['latin'],
+  weight: ['400', '700', '900'],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Manaka Japanese - Authentic Language Tutoring in Toulouse",
-    template: "%s | Manaka Japanese",
+    default: 'Toulouse Wine Trips - Tastings and Vineyard Experiences',
+    template: '%s | Toulouse Wine Trips',
   },
   description:
-    "Personalized Japanese language tutoring in Toulouse with a native teacher. Master conversation, grammar, and JLPT preparation.",
+    'Private and group wine tastings, vineyard tours, and curated wine trips in Toulouse for French and international guests.',
   openGraph: {
-    type: "website",
+    type: 'website',
     url: siteUrl,
-    title: "Manaka Japanese - Authentic Language Tutoring in Toulouse",
+    title: 'Toulouse Wine Trips - Tastings and Vineyard Experiences',
     description:
-      "Personalized Japanese language tutoring with a native teacher. Master conversation, grammar, and JLPT preparation.",
-    images: [{ url: "/images/profile-manaka.jpg" }],
+      'Private and group wine tastings, vineyard tours, and curated wine trips in Toulouse for French and international guests.',
+    images: [{ url: '/images/lessons-hero.png' }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Manaka Japanese - Authentic Language Tutoring in Toulouse",
+    card: 'summary_large_image',
+    title: 'Toulouse Wine Trips - Tastings and Vineyard Experiences',
     description:
-      "Personalized Japanese language tutoring with a native teacher. Master conversation, grammar, and JLPT preparation.",
-    images: ["/images/profile-manaka.jpg"],
+      'Private and group wine tastings, vineyard tours, and curated wine trips in Toulouse for French and international guests.',
+    images: ['/images/lessons-hero.png'],
   },
 };
 

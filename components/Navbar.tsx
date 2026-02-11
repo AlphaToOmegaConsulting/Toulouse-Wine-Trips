@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { withBasePath } from '@/lib/base-path';
-import { getHomePath, getLangFromPathname, type Lang, navCopy } from '@/lib/i18n';
+import { getHomePath, getLangFromPathname, getLocalizedPath, type Lang, navCopy } from '@/lib/i18n';
 
 const languageOptions: Array<{ lang: Lang; flag: string; label: string }> = [
   { lang: 'en', flag: '🇬🇧', label: 'English' },
-  { lang: 'ja', flag: '🇯🇵', label: 'Japanese' },
+  { lang: 'fr', flag: '🇫🇷', label: 'French' },
 ];
 
 const Navbar: React.FC = () => {
@@ -37,6 +37,7 @@ const Navbar: React.FC = () => {
   const currentLang = getLangFromPathname(currentPath);
   const navItems = navCopy.items(currentLang);
   const contactHref = navCopy.contactHref(currentLang);
+  const getLanguageSwitchHref = (targetLang: Lang) => getLocalizedPath(targetLang, currentPath);
 
   const isActive = (href: string) => {
     const homePath = getHomePath(currentLang);
@@ -61,7 +62,7 @@ const Navbar: React.FC = () => {
             {languageOptions.map((option) => (
               <Link
                 key={option.lang}
-                href={getHomePath(option.lang)}
+                href={getLanguageSwitchHref(option.lang)}
                 aria-label={`Switch to ${option.label}`}
                 className={`inline-flex h-8 w-8 items-center justify-center rounded-full text-lg transition-all ${
                   currentLang === option.lang
@@ -76,7 +77,7 @@ const Navbar: React.FC = () => {
 
           <Link href={getHomePath(currentLang)} className="text-left">
             <h2 className="text-xl font-extrabold leading-tight tracking-tighter font-display uppercase text-slate-900 ml-1">
-              Manaka<span className="text-primary">.</span>
+              Toulouse<span className="text-primary">.</span>Wine
             </h2>
           </Link>
         </div>
@@ -119,7 +120,7 @@ const Navbar: React.FC = () => {
             {languageOptions.map((option) => (
               <Link
                 key={option.lang}
-                href={getHomePath(option.lang)}
+                href={getLanguageSwitchHref(option.lang)}
                 onClick={() => setIsMenuOpen(false)}
                 aria-label={`Switch to ${option.label}`}
                 className={`inline-flex h-10 w-10 items-center justify-center rounded-full text-xl transition-all ${

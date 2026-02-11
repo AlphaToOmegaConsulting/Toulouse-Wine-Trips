@@ -1,6 +1,6 @@
-export type Lang = 'en' | 'ja';
+export type Lang = 'en' | 'fr';
 
-const supportedLangs: Lang[] = ['en', 'ja'];
+const supportedLangs: Lang[] = ['en', 'fr'];
 
 export function isSupportedLang(value: string): value is Lang {
   return supportedLangs.includes(value as Lang);
@@ -17,7 +17,7 @@ export function getLangFromPathname(pathname: string | null): Lang {
 }
 
 export function getHomePath(lang: Lang): string {
-  return lang === 'ja' ? '/ja' : '/en';
+  return lang === 'fr' ? '/fr' : '/en';
 }
 
 function stripLangPrefix(path: string): string {
@@ -57,6 +57,7 @@ export function getLocalizedPath(lang: Lang, path: string): string {
 
 type Localized<T> = {
   en: T;
+  fr?: T;
   ja?: T;
 };
 
@@ -66,39 +67,41 @@ function t<T>(value: Localized<T>, lang: Lang): T {
 
 export const navCopy = {
   items: (lang: Lang) => [
-    { name: t({ en: 'Home', ja: 'ホーム' }, lang), href: getLocalizedPath(lang, '/') },
-    { name: t({ en: 'About Me', ja: 'プロフィール' }, lang), href: getLocalizedPath(lang, '/about') },
-    { name: t({ en: 'Lessons & Fees', ja: 'レッスン・料金' }, lang), href: getLocalizedPath(lang, '/lessons') },
+    { name: t({ en: 'Home', fr: 'Accueil' }, lang), href: getLocalizedPath(lang, '/') },
+    { name: t({ en: 'Wine Tastings', fr: 'Degustations' }, lang), href: getLocalizedPath(lang, '/tastings') },
+    { name: t({ en: 'Wine Trips', fr: 'Wine Trips' }, lang), href: getLocalizedPath(lang, '/trips') },
+    { name: t({ en: 'Groups', fr: 'Groupes' }, lang), href: getLocalizedPath(lang, '/groups') },
+    { name: t({ en: 'Partners', fr: 'Partenaires' }, lang), href: getLocalizedPath(lang, '/partners') },
   ],
-  contactCta: (lang: Lang) => t({ en: 'Contact Me', ja: 'お問い合わせ' }, lang),
-  contactHref: (lang: Lang) => getLocalizedPath(lang, '/booking'),
-  mobileGetInTouch: (lang: Lang) => t({ en: 'Get in touch', ja: 'お問い合わせ' }, lang),
+  contactCta: (lang: Lang) => t({ en: 'Request a Quote', fr: 'Demander un devis' }, lang),
+  contactHref: (lang: Lang) => getLocalizedPath(lang, '/quote'),
+  mobileGetInTouch: (lang: Lang) => t({ en: 'Get in touch', fr: 'Contact' }, lang),
 };
 
 export const footerCopy = {
   description: (lang: Lang) =>
     t(
       {
-        en: 'Personalized Japanese language tutoring for all levels. Experience authentic culture and language learning in Toulouse or from anywhere online.',
-        ja: '初心者から上級者まで対応する、ひとりひとりに合わせた日本語レッスン。トゥールーズ対面またはオンラインで受講できます。',
+        en: 'Private and group wine experiences in Toulouse, from guided tastings to vineyard escapes built for your group.',
+        fr: 'Experiences oenologiques privees et en groupe a Toulouse, de la degustation guidee aux excursions dans les vignobles.',
       },
       lang,
     ),
-  explore: (lang: Lang) => t({ en: 'Explore', ja: 'メニュー' }, lang),
-  contactTitle: (lang: Lang) => t({ en: 'Contact Manaka', ja: '連絡先' }, lang),
-  locationLabel: (lang: Lang) => t({ en: 'Location', ja: '場所' }, lang),
-  locationValue: (lang: Lang) => t({ en: 'Toulouse, France & Online', ja: 'フランス・トゥールーズ / オンライン' }, lang),
-  emailLabel: (lang: Lang) => t({ en: 'Email', ja: 'メール' }, lang),
+  explore: (lang: Lang) => t({ en: 'Explore', fr: 'Explorer' }, lang),
+  contactTitle: (lang: Lang) => t({ en: 'Contact', fr: 'Contact' }, lang),
+  locationLabel: (lang: Lang) => t({ en: 'Location', fr: 'Lieu' }, lang),
+  locationValue: (lang: Lang) => t({ en: 'Toulouse, France', fr: 'Toulouse, France' }, lang),
+  emailLabel: (lang: Lang) => t({ en: 'Email', fr: 'Email' }, lang),
   copyright: (lang: Lang) =>
     t(
       {
-        en: '© 2024 Manaka Japanese. Learning Japanese made simple.',
-        ja: '© 2024 Manaka Japanese. わかりやすく続けやすい日本語学習。',
+        en: '© 2026 Toulouse Wine Trips. Curated wine experiences.',
+        fr: '© 2026 Toulouse Wine Trips. Experiences oenologiques sur mesure.',
       },
       lang,
     ),
-  privacy: (lang: Lang) => t({ en: 'Privacy Policy', ja: 'プライバシーポリシー' }, lang),
-  terms: (lang: Lang) => t({ en: 'Terms of Service', ja: '利用規約' }, lang),
+  privacy: (lang: Lang) => t({ en: 'Privacy Policy', fr: 'Politique de confidentialite' }, lang),
+  terms: (lang: Lang) => t({ en: 'Terms of Service', fr: "Conditions d'utilisation" }, lang),
 };
 
 export const homeCopy = {

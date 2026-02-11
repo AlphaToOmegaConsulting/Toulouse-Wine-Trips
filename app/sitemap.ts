@@ -3,20 +3,23 @@ import type { MetadataRoute } from 'next';
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://manaka-japanese.fr';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://toulouse-wine-trips.fr';
+  const now = new Date();
 
-  return [
-    { url: `${baseUrl}/en`, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
-    { url: `${baseUrl}/ja`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${baseUrl}/en/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/ja/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/en/lessons`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${baseUrl}/ja/lessons`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/en/booking`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/ja/booking`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/en/privacy`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${baseUrl}/ja/privacy`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${baseUrl}/en/terms`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
-    { url: `${baseUrl}/ja/terms`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
-  ];
+  const corePages = ['', '/about', '/tastings', '/trips', '/groups', '/partners', '/quote', '/faq', '/privacy', '/terms'];
+
+  return corePages.flatMap((path, index) => [
+    {
+      url: `${baseUrl}/en${path}`,
+      lastModified: now,
+      changeFrequency: path === '' ? 'weekly' : 'monthly',
+      priority: path === '' ? 1 : index < 6 ? 0.9 : 0.6,
+    },
+    {
+      url: `${baseUrl}/fr${path}`,
+      lastModified: now,
+      changeFrequency: path === '' ? 'weekly' : 'monthly',
+      priority: path === '' ? 0.95 : index < 6 ? 0.85 : 0.6,
+    },
+  ]);
 }

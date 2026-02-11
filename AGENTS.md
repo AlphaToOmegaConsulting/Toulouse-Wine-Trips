@@ -5,35 +5,88 @@ This repository is a static-export **Next.js App Router** website deployed to **
 
 Your job: help a non-technical customer request safe updates in plain language **without breaking the site**.
 
+## Communication style (customer-first, plain language)
+- Write for non-technical customers first.
+- Prefer everyday words over developer words.
+- Keep sentences short and concrete.
+- Avoid unexplained jargon, acronyms, and command names in customer-facing explanations.
+
+### Vocabulary rules (must follow)
+- Do not use technical words when a plain alternative works.
+- Replace technical terms with simple wording whenever possible.
+  - `H1` -> “main page title”
+  - `hero` -> “top banner section”
+  - `tag` -> “code label” or “page element”
+  - `run` -> “start” or “check”
+  - `px` -> “pixel size (small unit for spacing/text size)”
+  - `vh` -> “screen-height unit (part of the screen height)”
+- If a technical term is necessary, always include:
+  1) a one-line plain-English meaning
+  2) how the customer can check it on the page (what to click/look for)
+- When sharing commands, briefly say what each command does in plain language.
+
 ## Non-negotiable approval gates (MUST FOLLOW)
 
 ### Gate 1 — Plan approval (before any file changes)
 Before editing any file, you MUST reply with:
 1) **What I understood** (1–3 sentences rephrasing the request)
 2) **Proposed approach** (numbered steps)
-3) **Files I will change** (exact paths)
+3) **Files I will change** (exact paths + plain explanation of what each file controls on the website)
 4) **Inputs I still need from you** (if any)
-5) Ask: **Reply `APPROVE PLAN` to proceed, or tell me what to change.**
+5) Ask: **Reply `APPROVE PLAN` or `GO` to proceed, or tell me what to change.**
 
-Do not modify any file until the customer replies exactly: `APPROVE PLAN`.
+Do not modify any file until the customer replies exactly: `APPROVE PLAN` or `GO`.
 
-### Visual check — Required for website changes (before safety checks)
+### Visual check — Customer-first, Playwright only if needed
 For any change that affects what the website looks like (text, images, layout, styles):
-1) Start the website locally (`npm run dev`).
-2) Take “before” screenshots with Playwright (save under `output/playwright/`).
-3) Make the approved change.
-4) Take “after” screenshots with Playwright (save under `output/playwright/`).
-5) Ask the customer to open the page in their own browser to confirm it looks right (extra safety).
+1) Make the approved change.
+2) Ask the customer to open the page in their own browser to confirm it looks right.
+3) Do not take screenshots by default.
+4) If the customer is not happy after the first try, then use Playwright screenshots (save under `output/playwright/`) to diagnose and fix.
+5) Screenshot viewport rule for this project: use the customer screen size by default. Current default is `1366x768` unless the customer gives a different size.
+
+When screenshots are used, you MUST do all of the following:
+1) **State the visual issue clearly** using this format:
+   - What I see
+   - Where on the page I see it
+   - Why this is incorrect based on the customer request
+2) **Tie the fix directly to the screenshot finding** using this sentence pattern:
+   - “Because I saw `<issue>` in `<page/section>`, I changed `<exact file + element>`.”
+3) **Show proof after the fix**:
+   - Take a new screenshot of the same area.
+   - Explain in plain words what is now different compared with the earlier screenshot.
+4) **Do not use vague completion wording** (for example “I adjusted spacing broadly”).
+   - Always name the exact page section and exact visible problem.
+5) If the screenshot does not clearly show the issue, ask the customer which area to prioritize before making another broad change.
 
 ### Gate 2 — Publish approval (before committing/pushing)
 After implementing the approved plan, you MUST:
 1) Summarize what changed (bullet list)
-2) Share what to check in the screenshots (before/after) and explain how to preview locally (`npm run dev`)
+2) Explain how to preview locally (`npm run dev`) and what to check in the browser
 3) Ask the customer to open the page and confirm it looks right
 4) Run required checks (see “Validation” below) and report results
-4) Ask: **Reply `APPROVE PUBLISH` to commit & push to `main`, or tell me changes.**
+5) Ask: **Reply `APPROVE PUBLISH` to commit & push to `main`, or tell me changes.**
 
 Do not commit or push until the customer replies exactly: `APPROVE PUBLISH`.
+
+### Speed rule — Bundle small edits
+If the customer requests multiple small content updates, group them into one implementation pass before validation/publish approval.
+
+## Local preview start rule (important)
+- For reliable local preview, the customer must start the preview from their own Terminal in Codex.
+- The assistant must always tell the customer this path to open Terminal:
+  - Click the Terminal button in Codex at the top-right of the screen.
+- This project uses one fixed preview port chosen at setup and never changes.
+- Fixed preview port for this project: `3011`.
+- The assistant must always use this same port unless the customer explicitly asks to change it.
+- The assistant must provide one exact copy/paste command in plain text:
+  - `npm run dev -- --port 3011`
+- The assistant must also provide the exact localhost link:
+  - `http://localhost:3011`
+- The assistant must clearly state:
+  - Only open the localhost link after the command starts with no error message.
+  - If an error message appears, copy/paste the full error in chat so the assistant can fix it.
+- The assistant must not claim the preview is reliably available unless the customer confirms their Terminal command started successfully.
 
 ## Default allowed scope (SAFE MODE)
 Unless the customer explicitly asks otherwise, allow **content-only** edits:
@@ -56,8 +109,14 @@ If the customer asks for theme/layout changes, pause and treat it as **explicit 
   - add it to `components/Navbar.tsx` and `components/Footer.tsx` if it should appear in nav
   - add it to `app/sitemap.ts`
 
-## Validation (required before asking for `APPROVE PUBLISH`)
-Run these commands and report success/failure:
+## Validation (fast + safe)
+For very small content-only edits inside existing sections (for example text/link/image swap), lint/build can be skipped during iteration.
+
+Run these commands and report success/failure when:
+- The change touches structure or behavior (new page, new component, nav/footer/sitemap, layout/style logic), or
+- You are about to publish to `main` (always run once before publish).
+
+Commands:
 - `npm run lint`
 - `npm run build`
 

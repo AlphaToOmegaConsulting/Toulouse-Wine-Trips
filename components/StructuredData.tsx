@@ -3,15 +3,15 @@ type StructuredDataProps = {
 };
 
 export default function StructuredData({ siteUrl }: StructuredDataProps) {
-  const educationalOrganization = {
+  const localBusiness = {
     '@context': 'https://schema.org',
-    '@type': 'EducationalOrganization',
+    '@type': 'TouristTrip',
     '@id': `${siteUrl}/#organization`,
-    name: 'Manaka Japanese',
+    name: 'Toulouse Wine Trips',
     url: siteUrl,
     email: 'contact@manaka-japanese.fr',
-    areaServed: ['Toulouse, France', 'Online'],
-    availableLanguage: ['en', 'ja'],
+    areaServed: ['Toulouse, France'],
+    availableLanguage: ['en', 'fr'],
   };
 
   const website = {
@@ -19,8 +19,8 @@ export default function StructuredData({ siteUrl }: StructuredDataProps) {
     '@type': 'WebSite',
     '@id': `${siteUrl}/#website`,
     url: siteUrl,
-    name: 'Manaka Japanese',
-    inLanguage: ['en', 'ja'],
+    name: 'Toulouse Wine Trips',
+    inLanguage: ['en', 'fr'],
     publisher: {
       '@id': `${siteUrl}/#organization`,
     },
@@ -30,7 +30,7 @@ export default function StructuredData({ siteUrl }: StructuredDataProps) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(educationalOrganization) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
       />
       <script
         type="application/ld+json"
