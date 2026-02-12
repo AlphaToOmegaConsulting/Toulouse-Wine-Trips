@@ -42,8 +42,8 @@ const Footer: React.FC = () => {
             <img className="lp-footer-logo" src={withBasePath('/images/lapistoule-temp/logo-light.webp')} alt="Toulouse Wine Trips" />
             <p className="lp-footer-description">{footerCopy.description(currentLang)}</p>
             <div className="lp-footer-social">
-              <a href="#" aria-label="Instagram">Instagram</a>
-              <a href="#" aria-label="Facebook">Facebook</a>
+              <a className="lp-footer-social-link" href="#" aria-label="Instagram">Instagram</a>
+              <a className="lp-footer-social-link" href="#" aria-label="Facebook">Facebook</a>
             </div>
           </div>
 
@@ -51,7 +51,13 @@ const Footer: React.FC = () => {
             <h4 className="lp-footer-heading">{footerCopy.explore(currentLang)}</h4>
             <div className="lp-footer-links">
               {navItems.map((item) => (
-                <Link key={item.href} href={item.href}>{item.name}</Link>
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={normalizePath(item.href) === currentPath ? 'lp-footer-nav-link lp-footer-nav-link-active' : 'lp-footer-nav-link'}
+                >
+                  {item.name}
+                </Link>
               ))}
             </div>
           </div>
@@ -96,7 +102,8 @@ const Footer: React.FC = () => {
 
       {showTop ? (
         <button className="back-to-top" type="button" aria-label="Back to top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          ↑
+          <span aria-hidden="true">↑</span>
+          <span className="back-to-top-text">Top</span>
         </button>
       ) : null}
     </footer>
