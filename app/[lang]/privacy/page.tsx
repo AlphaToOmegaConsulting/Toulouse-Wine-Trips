@@ -49,17 +49,29 @@ export default async function LocalizedPrivacyPage({ params }: PageProps) {
   const copy = content[lang as Lang];
 
   return (
-    <main className="site-x section-y bg-white">
-      <article className="site-content max-w-3xl text-left space-y-6">
-        <h1 className="text-4xl font-black tracking-tight text-slate-900">{copy.title}</h1>
-        <p className="text-slate-500">{copy.updated}</p>
-        <p>{copy.intro}</p>
-        <ul className="list-disc pl-6 space-y-1">
-          {copy.bullets.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      </article>
+    <main className="lp-page-top">
+      <section className="lp-page-hero">
+        <div className="lp-container lp-page-hero-content">
+          <span className="lp-section-kicker">Legal</span>
+          <h1 className="lp-section-title">{copy.title}</h1>
+          <p className="lp-text-lead">{copy.intro}</p>
+        </div>
+      </section>
+
+      <section className="lp-section lp-section-light">
+        <article className="lp-container" style={{ maxWidth: '900px', display: 'grid', gap: '1rem' }}>
+          <section className="lp-card">
+            <p style={{ marginTop: 0, marginBottom: '0.8rem', color: 'var(--color-primary)', textTransform: 'uppercase', letterSpacing: '0.12em', fontSize: '0.8rem' }}>
+              {copy.updated}
+            </p>
+            <ul style={{ margin: 0, paddingLeft: '1.1rem', display: 'grid', gap: '0.45rem' }}>
+              {copy.bullets.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </section>
+        </article>
+      </section>
     </main>
   );
 }

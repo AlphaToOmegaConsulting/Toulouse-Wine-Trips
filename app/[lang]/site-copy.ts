@@ -7,12 +7,28 @@ export type Section = {
   bullets?: string[];
 };
 
+export type PageNewsItem = {
+  date: string;
+  title: string;
+  text: string;
+};
+
 export type PageData = {
   title: string;
   description: string;
   eyebrow: string;
   ctaLabel: string;
   ctaHref: string;
+  heroSubtitle?: string;
+  heroImage?: string;
+  featureImage?: string;
+  introQuote?: string;
+  highlightTitle?: string;
+  highlightText?: string;
+  highlightImage?: string;
+  highlightCtaLabel?: string;
+  highlightCtaHref?: string;
+  news?: PageNewsItem[];
   sections: Section[];
 };
 
@@ -114,6 +130,32 @@ export const tastingsData: Record<Lang, PageData> = {
     eyebrow: 'Core offer',
     ctaLabel: 'Request a Quote',
     ctaHref: '/quote',
+    heroSubtitle: 'Discovery and Signature formats',
+    heroImage: '/images/lapistoule-temp/visits-hero.png',
+    featureImage: '/images/lapistoule-temp/visits-tasting.png',
+    introQuote: 'Structured tasting formats designed for private groups, celebrations, and corporate teams.',
+    highlightTitle: 'Tastings with premium structure',
+    highlightText: 'From welcome to final recap, each tasting follows a clear educational and hospitality flow.',
+    highlightImage: '/images/lapistoule-temp/chai-barrels-background.jpg',
+    highlightCtaLabel: 'Get a tasting quote',
+    highlightCtaHref: '/quote',
+    news: [
+      {
+        date: 'DISCOVERY',
+        title: 'EUR 30 per person',
+        text: '3 to 4 wines, educational intro, and optional add-ons.',
+      },
+      {
+        date: 'SIGNATURE',
+        title: 'EUR 60 per person',
+        text: '5 to 6 wines, premium labels, and local pairings.',
+      },
+      {
+        date: 'GROUP READY',
+        title: 'Flexible hosting',
+        text: 'Available for private bookings, team events, and mixed-language groups.',
+      },
+    ],
     sections: [
       {
         title: 'Discovery tasting - EUR 30 per person',
@@ -136,6 +178,32 @@ export const tastingsData: Record<Lang, PageData> = {
     eyebrow: 'Offre principale',
     ctaLabel: 'Demander un devis',
     ctaHref: '/quote',
+    heroSubtitle: 'Formats Discovery et Signature',
+    heroImage: '/images/lapistoule-temp/visits-hero.png',
+    featureImage: '/images/lapistoule-temp/visits-tasting.png',
+    introQuote: 'Des degustations structurees pour groupes prives, celebrations et equipes entreprise.',
+    highlightTitle: 'Des degustations premium et fluides',
+    highlightText: 'De l accueil au recap final, chaque format suit un cadre clair et professionnel.',
+    highlightImage: '/images/lapistoule-temp/chai-barrels-background.jpg',
+    highlightCtaLabel: 'Demander un devis degustation',
+    highlightCtaHref: '/quote',
+    news: [
+      {
+        date: 'DISCOVERY',
+        title: '30 EUR par personne',
+        text: '3 a 4 vins, introduction pedagogique, options possibles.',
+      },
+      {
+        date: 'SIGNATURE',
+        title: '60 EUR par personne',
+        text: '5 a 6 vins, selection premium, accords mets locaux.',
+      },
+      {
+        date: 'GROUPES',
+        title: 'Format flexible',
+        text: 'Disponible pour prives, entreprises et groupes bilingues.',
+      },
+    ],
     sections: [
       {
         title: 'Degustation Discovery - 30 EUR par personne',
@@ -161,6 +229,32 @@ export const tripsData: Record<Lang, PageData> = {
     eyebrow: 'Vineyard escapes around Toulouse',
     ctaLabel: 'Request a Custom Quote',
     ctaHref: '/quote',
+    heroSubtitle: 'Half-day and full-day formats',
+    heroImage: '/images/lapistoule-temp/visits-hero.png',
+    featureImage: '/images/journey-toulouse.png',
+    introQuote: 'Each trip is designed around your group profile, timing, and preferred wine style.',
+    highlightTitle: 'Curated routes, clear logistics',
+    highlightText: 'We coordinate vineyards, timing, and transportation guidance for a seamless day.',
+    highlightImage: '/images/lapistoule-temp/chai-barrels-background.jpg',
+    highlightCtaLabel: 'Build my vineyard trip',
+    highlightCtaHref: '/quote',
+    news: [
+      {
+        date: 'FORMAT',
+        title: 'Half-day discovery',
+        text: 'A compact format focused on one curated vineyard route.',
+      },
+      {
+        date: 'FORMAT',
+        title: 'Full-day route',
+        text: 'A richer day with extended tasting and destination options.',
+      },
+      {
+        date: 'EXPERIENCE',
+        title: 'Private curation',
+        text: 'Trip flow adapted to your language, rhythm, and guest profile.',
+      },
+    ],
     sections: [
       {
         title: 'Trip formats',
@@ -179,6 +273,32 @@ export const tripsData: Record<Lang, PageData> = {
     eyebrow: 'Escapades dans les vignobles autour de Toulouse',
     ctaLabel: 'Demander un devis personnalise',
     ctaHref: '/quote',
+    heroSubtitle: 'Formats demi-journee et journee complete',
+    heroImage: '/images/lapistoule-temp/visits-hero.png',
+    featureImage: '/images/journey-toulouse.png',
+    introQuote: 'Chaque sortie est construite selon votre profil groupe, votre timing et vos objectifs.',
+    highlightTitle: 'Itineraires cibles, logistique claire',
+    highlightText: 'Nous coordonnons domaines, rythme de journee et guidage transport.',
+    highlightImage: '/images/lapistoule-temp/chai-barrels-background.jpg',
+    highlightCtaLabel: 'Construire mon wine trip',
+    highlightCtaHref: '/quote',
+    news: [
+      {
+        date: 'FORMAT',
+        title: 'Decouverte demi-journee',
+        text: 'Format concis centre sur un itineraire vignoble cible.',
+      },
+      {
+        date: 'FORMAT',
+        title: 'Route journee complete',
+        text: 'Journee plus riche avec options de degustation elargies.',
+      },
+      {
+        date: 'EXPERIENCE',
+        title: 'Curation privee',
+        text: 'Parcours adapte a votre langue, votre rythme et vos invites.',
+      },
+    ],
     sections: [
       {
         title: 'Formats de sortie',
@@ -200,6 +320,32 @@ export const groupsData: Record<Lang, PageData> = {
     eyebrow: 'High-value group experiences',
     ctaLabel: 'Request a Group Quote',
     ctaHref: '/quote',
+    heroSubtitle: 'Corporate and private formats',
+    heroImage: '/images/lapistoule-temp/visits-hero.png',
+    featureImage: '/images/lapistoule-temp/visits-tasting.png',
+    introQuote: 'From corporate teams to private celebrations, every format is built around practical execution.',
+    highlightTitle: 'Group events with premium flow',
+    highlightText: 'We align group size, service rhythm, and wine level to create smooth events.',
+    highlightImage: '/images/lapistoule-temp/chai-barrels-background.jpg',
+    highlightCtaLabel: 'Plan a group event',
+    highlightCtaHref: '/quote',
+    news: [
+      {
+        date: 'CORPORATE',
+        title: 'Team experiences',
+        text: 'Structured formats designed for internal teams and guests.',
+      },
+      {
+        date: 'PRIVATE',
+        title: 'Celebration groups',
+        text: 'Birthday, bachelor, and private events built with clear logistics.',
+      },
+      {
+        date: 'SERVICE',
+        title: 'Bilingual hosting',
+        text: 'English and French support for mixed international groups.',
+      },
+    ],
     sections: [
       {
         title: 'Designed for group needs',
@@ -218,6 +364,32 @@ export const groupsData: Record<Lang, PageData> = {
     eyebrow: 'Experiences premium pour groupes',
     ctaLabel: 'Demander un devis groupe',
     ctaHref: '/quote',
+    heroSubtitle: 'Formats entreprise et celebrations',
+    heroImage: '/images/lapistoule-temp/visits-hero.png',
+    featureImage: '/images/lapistoule-temp/visits-tasting.png',
+    introQuote: 'De l entreprise aux celebrations privees, chaque format est pense pour une execution fluide.',
+    highlightTitle: 'Evenements groupe a execution premium',
+    highlightText: 'Nous calibrons taille de groupe, rythme service et niveau vins.',
+    highlightImage: '/images/lapistoule-temp/chai-barrels-background.jpg',
+    highlightCtaLabel: 'Organiser un evenement groupe',
+    highlightCtaHref: '/quote',
+    news: [
+      {
+        date: 'ENTREPRISE',
+        title: 'Experiences equipe',
+        text: 'Formats structures pour equipes internes et invites.',
+      },
+      {
+        date: 'PRIVE',
+        title: 'Groupes celebration',
+        text: 'Anniversaires, EVG/EVJF et formats prives a logistique claire.',
+      },
+      {
+        date: 'SERVICE',
+        title: 'Animation bilingue',
+        text: 'Accompagnement francais/anglais pour groupes internationaux.',
+      },
+    ],
     sections: [
       {
         title: 'Concu pour les besoins de groupe',
@@ -239,6 +411,32 @@ export const partnersData: Record<Lang, PageData> = {
     eyebrow: 'Trusted local network',
     ctaLabel: 'Become a Partner',
     ctaHref: '/quote',
+    heroSubtitle: 'Network and quality standards',
+    heroImage: '/images/lapistoule-temp/history-modernization.webp',
+    featureImage: '/images/lapistoule-temp/history-roots.webp',
+    introQuote: 'Our partner model is based on reliability, guest care, and quality consistency.',
+    highlightTitle: 'Long-term local partnerships',
+    highlightText: 'We build stable collaborations with venues and vineyards that value guest experience.',
+    highlightImage: '/images/lapistoule-temp/chai-barrels-background.jpg',
+    highlightCtaLabel: 'Become a partner',
+    highlightCtaHref: '/quote',
+    news: [
+      {
+        date: 'NETWORK',
+        title: 'Wine shops',
+        text: 'Specialized local partners supporting tasting and sourcing needs.',
+      },
+      {
+        date: 'NETWORK',
+        title: 'Vineyards',
+        text: 'Trusted winemakers aligned with our hospitality standards.',
+      },
+      {
+        date: 'NETWORK',
+        title: 'Private venues',
+        text: 'Curated spaces selected for service quality and atmosphere.',
+      },
+    ],
     sections: [
       {
         title: 'Current partner types',
@@ -257,6 +455,32 @@ export const partnersData: Record<Lang, PageData> = {
     eyebrow: 'Reseau local de confiance',
     ctaLabel: 'Devenir partenaire',
     ctaHref: '/quote',
+    heroSubtitle: 'Reseau et standards qualite',
+    heroImage: '/images/lapistoule-temp/history-modernization.webp',
+    featureImage: '/images/lapistoule-temp/history-roots.webp',
+    introQuote: 'Notre modele partenaire repose sur fiabilite, accueil invite et qualite constante.',
+    highlightTitle: 'Partenariats locaux durables',
+    highlightText: 'Nous construisons des collaborations solides avec lieux et vignobles engages.',
+    highlightImage: '/images/lapistoule-temp/chai-barrels-background.jpg',
+    highlightCtaLabel: 'Devenir partenaire',
+    highlightCtaHref: '/quote',
+    news: [
+      {
+        date: 'RESEAU',
+        title: 'Caves a vin',
+        text: 'Partenaires locaux specialises pour degustation et approvisionnement.',
+      },
+      {
+        date: 'RESEAU',
+        title: 'Vignobles',
+        text: 'Domaines de confiance alignes avec nos standards accueil.',
+      },
+      {
+        date: 'RESEAU',
+        title: 'Lieux prives',
+        text: 'Espaces cibles selectionnes pour qualite de service et ambiance.',
+      },
+    ],
     sections: [
       {
         title: 'Types de partenaires actuels',
@@ -278,6 +502,32 @@ export const aboutData: Record<Lang, PageData> = {
     eyebrow: 'Who we are',
     ctaLabel: 'Request a Quote',
     ctaHref: '/quote',
+    heroSubtitle: 'A service-first wine company',
+    heroImage: '/images/lapistoule-temp/history-roots.webp',
+    featureImage: '/images/about-manaka.jpg',
+    introQuote: 'We combine local wine knowledge with premium hospitality standards for French and international guests.',
+    highlightTitle: 'Built for clarity and confidence',
+    highlightText: 'We keep communication simple, planning reliable, and execution focused on guest satisfaction.',
+    highlightImage: '/images/lapistoule-temp/chai-barrels-background.jpg',
+    highlightCtaLabel: 'Request a quote',
+    highlightCtaHref: '/quote',
+    news: [
+      {
+        date: 'POSITIONING',
+        title: 'Premium but accessible',
+        text: 'High-quality formats made clear and approachable for every group type.',
+      },
+      {
+        date: 'METHOD',
+        title: 'Curated quality',
+        text: 'We prioritize relevant selections over overwhelming choice.',
+      },
+      {
+        date: 'DELIVERY',
+        title: 'Reliable execution',
+        text: 'Clear communication and practical planning from first contact to event day.',
+      },
+    ],
     sections: [
       {
         title: 'Our positioning',
@@ -296,6 +546,32 @@ export const aboutData: Record<Lang, PageData> = {
     eyebrow: 'Qui nous sommes',
     ctaLabel: 'Demander un devis',
     ctaHref: '/quote',
+    heroSubtitle: 'Un service vin centre experience client',
+    heroImage: '/images/lapistoule-temp/history-roots.webp',
+    featureImage: '/images/about-manaka.jpg',
+    introQuote: 'Nous combinons connaissance locale du vin et standards hospitality premium pour clients francais et internationaux.',
+    highlightTitle: 'Concu pour clarte et confiance',
+    highlightText: 'Communication simple, planning fiable, execution orientee satisfaction invite.',
+    highlightImage: '/images/lapistoule-temp/chai-barrels-background.jpg',
+    highlightCtaLabel: 'Demander un devis',
+    highlightCtaHref: '/quote',
+    news: [
+      {
+        date: 'POSITIONNEMENT',
+        title: 'Premium mais accessible',
+        text: 'Formats de haute qualite avec lecture simple pour chaque type de groupe.',
+      },
+      {
+        date: 'METHODE',
+        title: 'Qualite ciblee',
+        text: 'Nous privilegions des selections pertinentes plutot que trop de choix.',
+      },
+      {
+        date: 'EXECUTION',
+        title: 'Organisation fiable',
+        text: 'Communication claire et planning pratique du premier contact au jour J.',
+      },
+    ],
     sections: [
       {
         title: 'Notre positionnement',
@@ -317,6 +593,32 @@ export const faqData: Record<Lang, PageData> = {
     eyebrow: 'Before you book',
     ctaLabel: 'Request a Quote',
     ctaHref: '/quote',
+    heroSubtitle: 'Booking information and key policies',
+    heroImage: '/images/lapistoule-temp/history-sustainable.webp',
+    featureImage: '/images/faq-illustration.png',
+    introQuote: 'This page gives practical answers so your booking process stays clear from the start.',
+    highlightTitle: 'Policy clarity for every booking',
+    highlightText: 'Deposit, cancellation, language, and food restrictions are handled with transparent communication.',
+    highlightImage: '/images/lapistoule-temp/chai-barrels-background.jpg',
+    highlightCtaLabel: 'Ask a specific question',
+    highlightCtaHref: '/quote',
+    news: [
+      {
+        date: 'POLICY',
+        title: 'Deposit details',
+        text: 'Deposit requirements are confirmed in each tailored proposal.',
+      },
+      {
+        date: 'POLICY',
+        title: 'Cancellation terms',
+        text: 'Cancellation conditions are shared clearly before confirmation.',
+      },
+      {
+        date: 'POLICY',
+        title: 'Language and dietary support',
+        text: 'English/French hosting and dietary handling available when specified in advance.',
+      },
+    ],
     sections: [
       {
         title: 'FAQ',
@@ -336,6 +638,32 @@ export const faqData: Record<Lang, PageData> = {
     eyebrow: 'Avant de reserver',
     ctaLabel: 'Demander un devis',
     ctaHref: '/quote',
+    heroSubtitle: 'Informations reservation et politiques',
+    heroImage: '/images/lapistoule-temp/history-sustainable.webp',
+    featureImage: '/images/faq-illustration.png',
+    introQuote: 'Cette page donne des reponses pratiques pour garder un processus de reservation clair.',
+    highlightTitle: 'Politiques claires pour chaque reservation',
+    highlightText: 'Acompte, annulation, langue et alimentation sont traites avec transparence.',
+    highlightImage: '/images/lapistoule-temp/chai-barrels-background.jpg',
+    highlightCtaLabel: 'Poser une question specifique',
+    highlightCtaHref: '/quote',
+    news: [
+      {
+        date: 'POLITIQUE',
+        title: 'Details acompte',
+        text: 'Le montant acompte est confirme dans chaque proposition personnalisee.',
+      },
+      {
+        date: 'POLITIQUE',
+        title: 'Conditions annulation',
+        text: 'Les conditions sont communiquees clairement avant confirmation.',
+      },
+      {
+        date: 'POLITIQUE',
+        title: 'Langues et alimentation',
+        text: 'Animation FR/EN et gestion alimentaire possibles si anticipees.',
+      },
+    ],
     sections: [
       {
         title: 'FAQ',
@@ -350,7 +678,10 @@ export const faqData: Record<Lang, PageData> = {
   },
 };
 
-export const quoteData: Record<Lang, { title: string; description: string; heading: string; subheading: string; faq: string[] }> = {
+export const quoteData: Record<
+  Lang,
+  { title: string; description: string; heading: string; subheading: string; faq: string[] }
+> = {
   en: {
     title: 'Request a Quote',
     description: 'Share your event details and receive a tailored wine experience proposal for Toulouse and surrounding vineyards.',

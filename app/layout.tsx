@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Noto_Sans_JP, Noto_Serif_JP, Plus_Jakarta_Sans } from 'next/font/google';
+import { Cormorant_Garamond, Montserrat } from 'next/font/google';
 import Footer from '@/components/Footer';
 import HtmlLangManager from '@/components/HtmlLangManager';
 import Navbar from '@/components/Navbar';
@@ -32,21 +32,18 @@ const contentSecurityPolicy = [
   'upgrade-insecure-requests',
 ].join('; ');
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: '--font-plus-jakarta',
+const headingFont = Cormorant_Garamond({
+  variable: '--font-heading',
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
 });
 
-const notoSansJp = Noto_Sans_JP({
-  variable: '--font-noto-sans-jp',
+const bodyFont = Montserrat({
+  variable: '--font-body',
   subsets: ['latin'],
-  weight: ['400', '700', '900'],
-});
-
-const notoSerifJp = Noto_Serif_JP({
-  variable: '--font-noto-serif-jp',
-  subsets: ['latin'],
-  weight: ['400', '700', '900'],
+  weight: ['300', '400', '500', '600'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -89,14 +86,14 @@ export default function RootLayout({
         <meta httpEquiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
       </head>
       <body
-        className={`${plusJakartaSans.variable} ${notoSansJp.variable} ${notoSerifJp.variable} antialiased bg-white text-slate-900`}
+        className={`${headingFont.variable} ${bodyFont.variable} antialiased`}
       >
         <HtmlLangManager />
         <StructuredData siteUrl={siteUrl} />
-        <div className="min-h-screen flex flex-col font-sans selection:bg-primary/20">
+        <div className="site-shell selection:bg-[color:var(--color-primary)]/20">
           <Navbar />
           <ScrollReveal />
-          <main className="flex-grow">{children}</main>
+          <main className="lp-main">{children}</main>
           <Footer />
         </div>
       </body>
