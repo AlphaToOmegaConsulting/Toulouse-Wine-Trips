@@ -40,11 +40,13 @@ export default async function LocalizedHomePage({ params }: PageProps) {
         <div className="lp-hero-content" data-reveal>
           <h1 className="lp-hero-title">
             Toulouse Wine Trips
-            <span className="lp-hero-subtitle">{data.eyebrow}</span>
           </h1>
+          <p className="lp-hero-subtitle">{data.eyebrow}</p>
           <p className="lp-hero-text">{data.description}</p>
-          <div className="lp-actions" style={{ justifyContent: 'center' }}>
-            <Link href={getLocalizedPath(locale, '/quote')} className="lp-btn lp-btn-primary">{data.ctaLabel}</Link>
+          <div className="lp-actions lp-hero-actions">
+            <Link href={getLocalizedPath(locale, '/quote')} className="lp-btn lp-btn-primary">
+              {isFr ? 'Demander un devis' : 'Request a quote'}
+            </Link>
             <Link href={getLocalizedPath(locale, '/trips')} className="lp-btn lp-btn-outline-light">
               {isFr ? 'Explorer les trips' : 'Explore trips'}
             </Link>
@@ -52,19 +54,19 @@ export default async function LocalizedHomePage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="lp-section lp-section-light">
+      <section className="lp-section lp-home-section lp-section-light">
         <div className="lp-container">
-          <div style={{ maxWidth: '740px', margin: '0 auto 2rem', textAlign: 'center' }} data-reveal>
+          <div className="lp-section-head lp-section-head-center" data-reveal>
             <span className="lp-section-kicker">{isFr ? 'Philosophie' : 'Philosophy'}</span>
             <h2 className="lp-section-title">{isFr ? "L'esprit de Toulouse Wine Trips" : 'The Toulouse Wine Trips Spirit'}</h2>
-            <p className="lp-text-lead">
+            <p className="lp-text-lead lp-text-center">
               {isFr
                 ? 'Une approche locale et sur mesure pour connecter vos groupes aux meilleurs vins autour de Toulouse.'
                 : 'A local, curated approach designed to connect your groups with the best wine experiences around Toulouse.'}
             </p>
           </div>
 
-          <div className="lp-grid lp-grid-3">
+          <div className="lp-grid lp-grid-3 lp-home-card-grid">
             {[0, 1, 2].map((index) => {
               const imageByIndex = [
                 '/images/lapistoule-temp/history-roots.webp',
@@ -73,12 +75,12 @@ export default async function LocalizedHomePage({ params }: PageProps) {
               ][index];
 
               return (
-                <article key={data.sections[index]?.title ?? index} className="feature-card" data-reveal>
-                  <div className="card-image-container">
+                <article key={data.sections[index]?.title ?? index} className="lp-clean-card lp-card-hover" data-reveal>
+                  <div className="lp-clean-card-image-wrap">
                     <img src={withBasePath(imageByIndex)} alt="Wine experience" className="card-image" />
                   </div>
-                  <h3 className="news-title">{data.sections[index]?.title}</h3>
-                  <p>{data.sections[index]?.body ?? data.sections[index]?.bullets?.join(' · ')}</p>
+                  <h3 className="lp-clean-card-title">{data.sections[index]?.title}</h3>
+                  <p className="lp-clean-card-text">{data.sections[index]?.body ?? data.sections[index]?.bullets?.join(' · ')}</p>
                 </article>
               );
             })}
@@ -86,12 +88,11 @@ export default async function LocalizedHomePage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="lp-section lp-section-green">
-        <div className="lp-container lp-grid lp-grid-2" style={{ alignItems: 'center' }}>
+      <section className="lp-section lp-home-section lp-section-green">
+        <div className="lp-container lp-grid lp-grid-2 lp-live-grid">
           <div data-reveal>
-            <h2 className="lp-section-title" style={{ color: '#fff' }}>{isFr ? "Vivez l'experience" : 'Live the Experience'}</h2>
-            <div className="divider-gold" />
-            <p className="lp-text-lead" style={{ color: 'rgba(255,255,255,0.92)', marginBottom: '1.4rem' }}>
+            <h2 className="lp-section-title lp-section-title-light">{isFr ? "Vivez l'experience" : 'Live the Experience'}</h2>
+            <p className="lp-text-lead lp-text-light lp-live-text">
               {isFr
                 ? 'Nous creons des degustations privees, des escapades vignobles et des formats groupe avec un service premium.'
                 : 'We craft private tastings, vineyard escapes, and group formats with premium service and local expertise.'}
@@ -103,23 +104,24 @@ export default async function LocalizedHomePage({ params }: PageProps) {
 
           <div className="quote-box" data-reveal>
             <img src={withBasePath('/images/lapistoule-temp/chai-barrels-background.jpg')} alt="Wine cellar" className="lp-card-image" />
-            <p className="quote-text">
+            <blockquote className="quote-text">
               {isFr
                 ? '"Une experience fluide, chaleureuse et tres bien organisee pour notre equipe internationale."'
                 : '"A smooth, warm, and beautifully organized wine experience for our international team."'}
-            </p>
+            </blockquote>
+            <p className="quote-attribution">{isFr ? 'Temoignage client' : 'Client feedback'}</p>
           </div>
         </div>
       </section>
 
-      <section className="lp-section lp-section-light">
+      <section className="lp-section lp-home-section lp-section-light">
         <div className="lp-container">
-          <div style={{ maxWidth: '760px', marginBottom: '2rem' }} data-reveal>
+          <div className="lp-section-head" data-reveal>
             <span className="lp-section-kicker">{isFr ? 'Actualites' : 'Highlights'}</span>
             <h2 className="lp-section-title">{isFr ? 'Actualites et formats' : 'News and formats'}</h2>
           </div>
 
-          <div className="lp-grid lp-grid-3">
+          <div className="lp-grid lp-grid-3 lp-home-card-grid">
             {[
               {
                 date: isFr ? 'FORMAT DISCOVERY' : 'DISCOVERY FORMAT',
@@ -137,19 +139,19 @@ export default async function LocalizedHomePage({ params }: PageProps) {
                 text: isFr ? 'Execution fiable pour entreprises et groupes internationaux.' : 'Reliable execution for companies and international groups.',
               },
             ].map((item) => (
-              <article key={item.title} className="news-card" data-reveal>
+              <article key={item.title} className="lp-clean-card news-card" data-reveal>
                 <p className="news-date">{item.date}</p>
-                <h3 className="news-title">{item.title}</h3>
-                <p className="news-excerpt">{item.text}</p>
+                <h3 className="lp-clean-card-title">{item.title}</h3>
+                <p className="lp-clean-card-text">{item.text}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="lp-section lp-section-alt">
+      <section className="lp-section lp-home-section lp-section-alt">
         <div className="lp-container">
-          <div style={{ maxWidth: '760px', marginBottom: '2rem' }} data-reveal>
+          <div className="lp-section-head" data-reveal>
             <span className="lp-section-kicker">{isFr ? 'Formats' : 'Formats'}</span>
             <h2 className="lp-section-title">{isFr ? 'Nos experiences principales' : 'Our core experiences'}</h2>
           </div>
@@ -181,15 +183,15 @@ export default async function LocalizedHomePage({ params }: PageProps) {
                 badge: isFr ? 'Groupe' : 'Group',
               },
             ].map((item) => (
-              <article key={item.title} className="lp-wine-card" data-reveal>
+              <article key={item.title} className="lp-wine-card lp-card-hover" data-reveal>
                 <div className="lp-wine-image-wrap">
-                  <span className="wine-badge">{item.badge}</span>
                   <img src={withBasePath(item.image)} alt={item.title} className="lp-wine-image" />
                 </div>
                 <div className="lp-wine-content">
-                  <h3 style={{ fontSize: '1.65rem' }}>{item.title}</h3>
-                  <p>{item.desc}</p>
-                  <Link href={getLocalizedPath(locale, '/quote')} className="lp-btn lp-btn-link">
+                  <span className="wine-badge">{item.badge}</span>
+                  <h3 className="lp-clean-card-title">{item.title}</h3>
+                  <p className="lp-clean-card-text">{item.desc}</p>
+                  <Link href={getLocalizedPath(locale, '/quote')} className="lp-btn lp-btn-outline-dark lp-wine-cta">
                     {isFr ? 'Decouvrir' : 'Explore'}
                   </Link>
                 </div>
@@ -199,29 +201,44 @@ export default async function LocalizedHomePage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="lp-section location-section">
-        <div className="lp-container lp-grid lp-grid-2" style={{ alignItems: 'start' }}>
+      <section className="lp-section lp-home-section location-section">
+        <div className="lp-container lp-grid lp-grid-2 lp-contact-grid">
           <div data-reveal>
             <span className="lp-section-kicker">{isFr ? 'Nous trouver' : 'Find us'}</span>
             <h2 className="lp-section-title">{isFr ? 'Toulouse et alentours' : 'Toulouse and nearby vineyards'}</h2>
-            <p className="lp-text-lead" style={{ marginBottom: '1.2rem' }}>
+            <p className="lp-text-lead lp-contact-text">
               {isFr
                 ? 'Nous organisons vos experiences dans Toulouse et vers les domaines partenaires autour de la ville.'
                 : 'We organize experiences in Toulouse and with partner vineyards around the city.'}
             </p>
             <div className="contact-card">
-              <p><strong>Email:</strong> contact@toulouse-wine-trips.fr</p>
-              <p><strong>Phone:</strong> +33 6 00 00 00 00</p>
-              <p style={{ marginBottom: 0 }}><strong>Address:</strong> Toulouse, France</p>
+              <p className="contact-item">
+                <span className="contact-label">{isFr ? 'Lieu:' : 'Location:'}</span>
+                <span className="contact-value">Toulouse, France</span>
+              </p>
+              <p className="contact-item">
+                <span className="contact-label">{isFr ? 'Email:' : 'Email:'}</span>
+                <a className="contact-value contact-link" href="mailto:contact@toulouse-wine-trips.fr">
+                  contact@toulouse-wine-trips.fr
+                </a>
+              </p>
+              <p className="contact-item">
+                <span className="contact-label">{isFr ? 'Telephone:' : 'Phone:'}</span>
+                <a className="contact-value contact-link" href="tel:+33600000000">
+                  +33 6 00 00 00 00
+                </a>
+              </p>
             </div>
           </div>
 
-          <div className="location-map-container" data-reveal>
+          <div className="location-map-shell" data-reveal>
+            <div className="location-map-container">
             <iframe
               title="Toulouse map"
               loading="lazy"
               src="https://www.google.com/maps?q=Toulouse,+France&output=embed"
             />
+            </div>
           </div>
         </div>
       </section>
