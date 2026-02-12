@@ -7,9 +7,9 @@ import Icon from '@/components/Icon';
 import { withBasePath } from '@/lib/base-path';
 import { getHomePath, getLangFromPathname, getLocalizedPath, type Lang, navCopy } from '@/lib/i18n';
 
-const languageOptions: Array<{ lang: Lang; flag: string; label: string }> = [
-  { lang: 'en', flag: '🇬🇧', label: 'English' },
-  { lang: 'fr', flag: '🇫🇷', label: 'Francais' },
+const languageOptions: Array<{ lang: Lang; code: string; label: string }> = [
+  { lang: 'en', code: 'EN', label: 'English' },
+  { lang: 'fr', code: 'FR', label: 'Francais' },
 ];
 
 const Navbar: React.FC = () => {
@@ -51,6 +51,7 @@ const Navbar: React.FC = () => {
         <Link href={homePath} className="lp-brand" aria-label="TWT home">
           <span className="lp-brand-main">TWT</span>
           <span className="lp-brand-sub">Curated Experiences</span>
+          <span className="lp-brand-accent" aria-hidden="true" />
         </Link>
 
         <nav className="lp-nav" aria-label="Main navigation">
@@ -61,7 +62,7 @@ const Navbar: React.FC = () => {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="lp-header-actions">
           <div className="lp-lang-group">
             {languageOptions.map((option) => (
               <Link
@@ -70,7 +71,7 @@ const Navbar: React.FC = () => {
                 aria-label={`Switch to ${option.label}`}
                 className={`lp-lang-btn ${currentLang === option.lang ? 'lp-current' : ''}`}
               >
-                <span aria-hidden="true">{option.flag}</span>
+                <span aria-hidden="true">{option.code}</span>
               </Link>
             ))}
           </div>
@@ -89,7 +90,7 @@ const Navbar: React.FC = () => {
         <div className="lp-mobile-inner">
           {navItems.map((item) => (
             <Link key={item.href} href={item.href} className={`lp-mobile-link ${isActive(item.href) ? 'lp-active' : ''}`} onClick={() => setIsMenuOpen(false)}>
-              {item.name}
+              {item.name.toUpperCase()}
             </Link>
           ))}
           <Link href={contactHref} className={`lp-mobile-link ${isActive(contactHref) ? 'lp-active' : ''}`} onClick={() => setIsMenuOpen(false)}>

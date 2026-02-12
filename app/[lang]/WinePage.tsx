@@ -104,8 +104,8 @@ export default function WinePage({ lang, data }: WinePageProps) {
       <section className="lp-section lp-section-green">
         <div className="lp-container lp-grid lp-grid-2" style={{ alignItems: 'center' }}>
           <div data-reveal>
-            <h2 className="lp-section-title" style={{ color: '#fff' }}>{highlightTitle}</h2>
-            <p className="lp-text-lead" style={{ color: 'rgba(255,255,255,0.92)', marginBottom: '1.2rem' }}>{highlightText}</p>
+            <h2 className="lp-section-title" style={{ color: 'var(--color-text-on-dark)' }}>{highlightTitle}</h2>
+            <p className="lp-text-lead" style={{ color: 'color-mix(in srgb, var(--color-text-on-dark) 92%, transparent)', marginBottom: '1.2rem' }}>{highlightText}</p>
             <Link href={getLocalizedPath(lang, highlightCtaHref)} className="lp-btn lp-btn-primary">
               {highlightCtaLabel}
             </Link>

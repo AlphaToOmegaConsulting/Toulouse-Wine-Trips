@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Cormorant_Garamond, Montserrat } from 'next/font/google';
+import { Inter, Playfair_Display } from 'next/font/google';
 import Footer from '@/components/Footer';
 import HtmlLangManager from '@/components/HtmlLangManager';
 import Navbar from '@/components/Navbar';
@@ -32,17 +32,17 @@ const contentSecurityPolicy = [
   'upgrade-insecure-requests',
 ].join('; ');
 
-const headingFont = Cormorant_Garamond({
+const headingFont = Playfair_Display({
   variable: '--font-heading',
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['600', '700'],
   display: 'swap',
 });
 
-const bodyFont = Montserrat({
+const bodyFont = Inter({
   variable: '--font-body',
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
+  weight: ['400', '500', '600'],
   display: 'swap',
 });
 

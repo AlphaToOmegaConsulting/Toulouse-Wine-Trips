@@ -22,6 +22,11 @@ const Footer: React.FC = () => {
   const currentPath = normalizePath(pathname);
   const currentLang = getLangFromPathname(currentPath);
   const navItems = navCopy.items(currentLang);
+  const phoneLabel = currentLang === 'fr' ? 'Telephone' : 'Phone';
+  const hoursTitle = currentLang === 'fr' ? 'Horaires' : 'Hours';
+  const monSatText = currentLang === 'fr' ? 'Lun-Sam: 9:00 - 19:00' : 'Mon-Sat: 9:00 - 19:00';
+  const sundayText = currentLang === 'fr' ? 'Dimanche: Groupes prives uniquement' : 'Sunday: Private groups only';
+  const bookingsText = currentLang === 'fr' ? 'Reservations sur demande' : 'Bookings by request';
 
   useEffect(() => {
     const onScroll = () => setShowTop(window.scrollY > 500);
@@ -33,16 +38,16 @@ const Footer: React.FC = () => {
     <footer className="lp-footer">
       <div className="lp-container">
         <div className="lp-footer-grid">
-          <div>
-            <img src={withBasePath('/images/lapistoule-temp/logo-light.webp')} alt="Toulouse Wine Trips" style={{ height: '54px', marginBottom: '1rem' }} />
-            <p style={{ maxWidth: '26rem', opacity: 0.82 }}>{footerCopy.description(currentLang)}</p>
-            <div className="flex gap-4 mt-3">
+          <div className="lp-footer-col lp-footer-brand-col">
+            <img className="lp-footer-logo" src={withBasePath('/images/lapistoule-temp/logo-light.webp')} alt="Toulouse Wine Trips" />
+            <p className="lp-footer-description">{footerCopy.description(currentLang)}</p>
+            <div className="lp-footer-social">
               <a href="#" aria-label="Instagram">Instagram</a>
               <a href="#" aria-label="Facebook">Facebook</a>
             </div>
           </div>
 
-          <div>
+          <div className="lp-footer-col">
             <h4 className="lp-footer-heading">{footerCopy.explore(currentLang)}</h4>
             <div className="lp-footer-links">
               {navItems.map((item) => (
@@ -51,28 +56,34 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          <div>
+          <div className="lp-footer-col">
             <h4 className="lp-footer-heading">{footerCopy.contactTitle(currentLang)}</h4>
-            <div className="lp-footer-links">
-              <p><strong>{footerCopy.locationLabel(currentLang)}:</strong> {footerCopy.locationValue(currentLang)}</p>
-              <p><strong>{footerCopy.emailLabel(currentLang)}:</strong> contact@toulouse-wine-trips.fr</p>
-              <p><strong>Phone:</strong> +33 6 00 00 00 00</p>
+            <div className="lp-footer-contact-list">
+              <p><span className="lp-footer-label">{footerCopy.locationLabel(currentLang)}:</span> {footerCopy.locationValue(currentLang)}</p>
+              <p>
+                <span className="lp-footer-label">{footerCopy.emailLabel(currentLang)}:</span>{' '}
+                <a href="mailto:contact@toulouse-wine-trips.fr">contact@toulouse-wine-trips.fr</a>
+              </p>
+              <p>
+                <span className="lp-footer-label">{phoneLabel}:</span>{' '}
+                <a href="tel:+33600000000">+33 6 00 00 00 00</a>
+              </p>
             </div>
           </div>
 
-          <div>
-            <h4 className="lp-footer-heading">Hours</h4>
-            <div className="lp-footer-links">
-              <p>Mon-Sat: 9:00 - 19:00</p>
-              <p>Sunday: Private groups only</p>
-              <p>Bookings by request</p>
+          <div className="lp-footer-col">
+            <h4 className="lp-footer-heading">{hoursTitle}</h4>
+            <div className="lp-footer-hours">
+              <p>{monSatText}</p>
+              <p>{sundayText}</p>
+              <p>{bookingsText}</p>
             </div>
           </div>
         </div>
 
         <div className="lp-footer-bottom">
-          <p>{footerCopy.copyright(currentLang)}</p>
-          <div className="flex gap-5">
+          <p className="lp-footer-copyright">{footerCopy.copyright(currentLang)}</p>
+          <div className="lp-footer-policy-links">
             <Link href={getLocalizedPath(currentLang, '/privacy')}>{footerCopy.privacy(currentLang)}</Link>
             <Link href={getLocalizedPath(currentLang, '/terms')}>{footerCopy.terms(currentLang)}</Link>
           </div>

@@ -65,10 +65,10 @@ export default async function QuotePage({ params }: QuotePageProps) {
       <section className="lp-section lp-section-green">
         <div className="lp-container lp-grid lp-grid-2" style={{ alignItems: 'center' }}>
           <div>
-            <h2 className="lp-section-title" style={{ color: '#fff' }}>
+            <h2 className="lp-section-title" style={{ color: 'var(--color-text-on-dark)' }}>
               {isFr ? 'Organisation claire avant confirmation' : 'Clear planning before confirmation'}
             </h2>
-            <p className="lp-text-lead" style={{ color: 'rgba(255,255,255,0.92)', marginBottom: '1.2rem' }}>
+            <p className="lp-text-lead" style={{ color: 'color-mix(in srgb, var(--color-text-on-dark) 92%, transparent)', marginBottom: '1.2rem' }}>
               {isFr
                 ? 'Nous clarifions format, timing, prix et conditions avant validation finale.'
                 : 'We clarify format, timing, pricing, and conditions before final confirmation.'}
