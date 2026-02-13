@@ -6,6 +6,8 @@ import { isSupportedLang, type Lang } from '@/lib/i18n';
 
 type PageProps = { params: Promise<{ lang: string }> };
 
+import FaqClient from './FaqClient';
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { lang } = await params;
   if (!isSupportedLang(lang)) return {};
@@ -17,5 +19,5 @@ export default async function FaqPage({ params }: PageProps) {
   const { lang } = await params;
   if (!isSupportedLang(lang)) notFound();
 
-  return <WinePage lang={lang as Lang} data={faqData[lang as Lang]} />;
+  return <FaqClient lang={lang as Lang} data={faqData[lang as Lang]} />;
 }

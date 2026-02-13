@@ -17,7 +17,7 @@ const content: Record<Lang, { title: string; description: string; updated: strin
       'Services are confirmed only after both sides agree to scope, schedule, and pricing.',
       'Quote details include payment terms and cancellation terms.',
       'You agree to provide accurate booking details.',
-      'Questions: contact@manaka-japanese.fr',
+      'Questions: contact@toulouse-wine-trips.fr',
     ],
   },
   fr: {
@@ -29,7 +29,7 @@ const content: Record<Lang, { title: string; description: string; updated: strin
       'Les services sont confirmes apres accord sur le perimetre, la date et le tarif.',
       'Le devis inclut conditions de paiement et annulation.',
       'Vous devez fournir des informations de reservation exactes.',
-      'Questions: contact@manaka-japanese.fr',
+      'Questions: contact@toulouse-wine-trips.fr',
     ],
   },
 };
@@ -59,12 +59,10 @@ export default async function LocalizedTermsPage({ params }: PageProps) {
       </section>
 
       <section className="lp-section lp-section-light">
-        <article className="lp-container" style={{ maxWidth: '900px', display: 'grid', gap: '1rem' }}>
+        <article className="lp-container lp-legal-shell">
           <section className="lp-card">
-            <p style={{ marginTop: 0, marginBottom: '0.8rem', color: 'var(--color-primary)', textTransform: 'uppercase', letterSpacing: '0.12em', fontSize: '0.8rem' }}>
-              {copy.updated}
-            </p>
-            <ul style={{ margin: 0, paddingLeft: '1.1rem', display: 'grid', gap: '0.45rem' }}>
+            <p className="lp-meta-note">{copy.updated}</p>
+            <ul className="lp-inline-list">
               {copy.bullets.map((item) => (
                 <li key={item}>{item}</li>
               ))}

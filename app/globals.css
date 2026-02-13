@@ -429,7 +429,7 @@ a {
   padding-block: 0.8rem;
 }
 
-.contact-item + .contact-item {
+.contact-item+.contact-item {
   border-top: 1px solid var(--color-gray-200);
 }
 
@@ -583,33 +583,20 @@ a {
 }
 
 .lp-brand {
-  display: flex;
-  flex-direction: column;
-  color: var(--color-cream-200);
-  line-height: 1;
+  display: inline-flex;
+  align-items: center;
 }
 
-.lp-brand-main {
-  font-family: var(--font-body), "Inter", sans-serif;
-  font-size: clamp(1.5rem, 2.4vw, 1.75rem);
-  font-weight: 700;
-  letter-spacing: 0.04em;
+.lp-brand-logo {
+  height: 54px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  transition: height var(--transition-standard);
 }
 
-.lp-brand-sub {
-  margin-top: 0.26rem;
-  font-family: var(--font-body), "Inter", sans-serif;
-  font-size: 0.62rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-
-.lp-brand-accent {
-  margin-top: 0.35rem;
-  width: 64px;
-  height: 2px;
-  background: var(--color-primary);
+.lp-header.lp-scrolled .lp-brand-logo {
+  height: 48px;
 }
 
 .lp-nav {
@@ -773,6 +760,8 @@ a {
 .lp-footer-logo {
   height: 76px;
   width: auto;
+  display: block;
+  object-fit: contain;
   margin-bottom: 1.15rem;
 }
 
@@ -857,7 +846,7 @@ a {
   word-break: break-word;
 }
 
-.lp-footer-hours p + p {
+.lp-footer-hours p+p {
   margin-top: 0.12rem;
 }
 
@@ -889,7 +878,7 @@ a {
   gap: 0.7rem;
 }
 
-.lp-footer-policy-links a + a::before {
+.lp-footer-policy-links a+a::before {
   content: "|";
   margin-right: 0.75rem;
   color: rgba(106, 106, 106, 0.8);
@@ -1105,7 +1094,7 @@ a {
     height: 320px;
   }
 
-  .lp-footer-policy-links a + a::before {
+  .lp-footer-policy-links a+a::before {
     display: none;
   }
 
@@ -1120,6 +1109,7 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   [data-reveal],
   .lp-btn,
   .lp-card-hover,
@@ -1138,4 +1128,55 @@ a {
   .lp-clean-card:hover .card-image {
     transform: none;
   }
+}
+
+.lp-btn-hero-primary {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: var(--color-primary);
+}
+
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-family: var(--font-heading), "Playfair Display", serif;
+  font-size: 1.25rem;
+  color: var(--color-charcoal-800);
+  cursor: pointer;
+}
+
+.faq-question:hover {
+  color: var(--color-primary);
+}
+
+.faq-icon {
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: var(--color-primary);
+}
+
+.faq-answer {
+  margin: 0;
+  padding-bottom: 1.25rem;
+  color: var(--color-gray-500);
+  font-family: var(--font-body), "Inter", sans-serif;
+  line-height: 1.6;
 }

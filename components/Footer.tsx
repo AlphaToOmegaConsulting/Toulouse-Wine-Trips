@@ -39,12 +39,11 @@ const Footer: React.FC = () => {
       <div className="lp-container">
         <div className="lp-footer-grid">
           <div className="lp-footer-col lp-footer-brand-col">
-            <img className="lp-footer-logo" src={withBasePath('/images/lapistoule-temp/logo-light.webp')} alt="Toulouse Wine Trips" />
+            <img className="lp-footer-logo" src={withBasePath('/images/site-logo.png')} alt="Toulouse Wine Trips" />
             <p className="lp-footer-description">{footerCopy.description(currentLang)}</p>
-            <div className="lp-footer-social">
-              <a className="lp-footer-social-link" href="#" aria-label="Instagram">Instagram</a>
-              <a className="lp-footer-social-link" href="#" aria-label="Facebook">Facebook</a>
-            </div>
+            <p className="lp-footer-description" style={{ marginTop: '0.5rem' }}>
+              {currentLang === 'fr' ? 'Reseaux sociaux en cours de mise a jour.' : 'Social profiles are being updated.'}
+            </p>
           </div>
 
           <div className="lp-footer-col">

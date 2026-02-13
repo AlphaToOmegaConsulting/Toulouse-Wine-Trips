@@ -5,6 +5,8 @@ export type Section = {
   title: string;
   body?: string;
   bullets?: string[];
+  price?: string;
+  image?: string;
 };
 
 export type PageNewsItem = {
@@ -158,11 +160,15 @@ export const tastingsData: Record<Lang, PageData> = {
     ],
     sections: [
       {
-        title: 'Discovery tasting - EUR 30 per person',
+        title: 'Discovery tasting',
+        price: 'EUR 30 per person',
+        image: '/images/lapistoule-temp/wine-bottle-cuvee-tanays.webp',
         bullets: ['3 to 4 wines', 'Educational introduction', 'Optional add-ons'],
       },
       {
-        title: 'Signature tasting - EUR 60 per person',
+        title: 'Signature tasting',
+        price: 'EUR 60 per person',
+        image: '/images/lapistoule-temp/wine-bottle-le-pas-sage.webp',
         bullets: ['5 to 6 wines', 'Premium selection', 'Local food pairing and deeper guidance'],
       },
       {
@@ -206,11 +212,15 @@ export const tastingsData: Record<Lang, PageData> = {
     ],
     sections: [
       {
-        title: 'Degustation Discovery - 30 EUR par personne',
+        title: 'Degustation Discovery',
+        price: '30 EUR par personne',
+        image: '/images/lapistoule-temp/wine-bottle-cuvee-tanays.webp',
         bullets: ['3 a 4 vins', 'Introduction pedagogique', 'Options additionnelles'],
       },
       {
-        title: 'Degustation Signature - 60 EUR par personne',
+        title: 'Degustation Signature',
+        price: '60 EUR par personne',
+        image: '/images/lapistoule-temp/wine-bottle-le-pas-sage.webp',
         bullets: ['5 a 6 vins', 'Selection premium', 'Accords mets locaux et accompagnement approfondi'],
       },
       {
@@ -261,6 +271,21 @@ export const tripsData: Record<Lang, PageData> = {
         bullets: ['Half-day discoveries', 'Full-day vineyard routes', 'Private curated experiences'],
       },
       {
+        title: 'Half-day discoveries',
+        image: '/images/lapistoule-temp/visits-hero.png',
+        body: 'A compact format focused on one curated vineyard route, perfect for a morning or afternoon escape.',
+      },
+      {
+        title: 'Full-day vineyard routes',
+        image: '/images/lapistoule-temp/history-roots.webp',
+        body: 'A richer day with extended tasting, lunch options, and a deeper dive into the region.',
+      },
+      {
+        title: 'Private curated experiences',
+        image: '/images/lapistoule-temp/visits-group.png',
+        body: 'Completely tailored to your group profile, timing, and preferred wine style.',
+      },
+      {
         title: 'Why choose us',
         bullets: ['Strong local partner network', 'Clear organization from start to finish', 'Bilingual hosting'],
       },
@@ -303,6 +328,21 @@ export const tripsData: Record<Lang, PageData> = {
       {
         title: 'Formats de sortie',
         bullets: ['Decouverte demi-journee', 'Route vignoble journee complete', 'Experience privee sur mesure'],
+      },
+      {
+        title: 'Decouverte demi-journee',
+        image: '/images/lapistoule-temp/visits-hero.png',
+        body: 'Un format concis centre sur un itineraire vignoble cible, ideal pour une matinee ou un apres-midi.',
+      },
+      {
+        title: 'Route vignoble journee complete',
+        image: '/images/lapistoule-temp/history-roots.webp',
+        body: 'Une journee plus riche avec degustation etendue, dejeuner et immersion dans la region.',
+      },
+      {
+        title: 'Experience privee sur mesure',
+        image: '/images/lapistoule-temp/visits-group.png',
+        body: 'Entierement adapte a votre profil groupe, votre timing et votre style de vin prefere.',
       },
       {
         title: 'Pourquoi nous choisir',
@@ -439,12 +479,19 @@ export const partnersData: Record<Lang, PageData> = {
     ],
     sections: [
       {
-        title: 'Current partner types',
-        bullets: ['Wine shops', 'Vineyards', 'Private venues'],
+        title: 'Wine shops',
+        image: '/images/lapistoule-temp/chai-barrels-background.jpg',
+        body: 'Specialized local partners supporting tasting and sourcing needs.',
       },
       {
-        title: 'Partnership goal',
-        body: 'Create reliable, high-quality guest experiences through long-term local collaboration.',
+        title: 'Vineyards',
+        image: '/images/lapistoule-temp/visits-hero.png',
+        body: 'Trusted winemakers aligned with our hospitality standards.',
+      },
+      {
+        title: 'Private venues',
+        image: '/images/lapistoule-temp/visits-group.png',
+        body: 'Curated spaces selected for service quality and atmosphere.',
       },
     ],
   },
@@ -483,12 +530,19 @@ export const partnersData: Record<Lang, PageData> = {
     ],
     sections: [
       {
-        title: 'Types de partenaires actuels',
-        bullets: ['Caves a vin', 'Vignobles', 'Lieux prives'],
+        title: 'Caves a vin',
+        image: '/images/lapistoule-temp/chai-barrels-background.jpg',
+        body: 'Partenaires locaux specialises pour degustation et approvisionnement.',
       },
       {
-        title: 'Objectif du partenariat',
-        body: 'Construire des experiences fiables et qualitatives grace a des collaborations locales durables.',
+        title: 'Vignobles',
+        image: '/images/lapistoule-temp/visits-hero.png',
+        body: 'Domaines de confiance alignes avec nos standards accueil.',
+      },
+      {
+        title: 'Lieux prives',
+        image: '/images/lapistoule-temp/visits-group.png',
+        body: 'Espaces cibles selectionnes pour qualite de service et ambiance.',
       },
     ],
   },
@@ -531,10 +585,12 @@ export const aboutData: Record<Lang, PageData> = {
     sections: [
       {
         title: 'Our positioning',
+        image: '/images/lapistoule-temp/history-modernization.webp',
         body: 'Premium but accessible wine experiences designed for both local and international guests.',
       },
       {
         title: 'What matters most',
+        image: '/images/lapistoule-temp/history-sustainable.webp',
         bullets: ['Clear communication', 'Reliable logistics', 'Curated quality over overwhelming choice'],
       },
     ],
@@ -575,10 +631,12 @@ export const aboutData: Record<Lang, PageData> = {
     sections: [
       {
         title: 'Notre positionnement',
+        image: '/images/lapistoule-temp/history-modernization.webp',
         body: 'Des experiences oenologiques premium mais accessibles, pour clients locaux et internationaux.',
       },
       {
         title: 'Nos priorites',
+        image: '/images/lapistoule-temp/history-sustainable.webp',
         bullets: ['Communication claire', 'Logistique fiable', 'Qualite ciblee sans surcharge de choix'],
       },
     ],

@@ -30,14 +30,14 @@ export default async function QuotePage({ params }: QuotePageProps) {
         <div className="lp-container lp-page-hero-content">
           <div data-reveal>
             <span className="lp-section-kicker">{copy.heading}</span>
-            <h1 className="lp-section-title" style={{ marginBottom: '0.8rem' }}>{copy.heading}</h1>
+            <h1 className="lp-section-title">{copy.heading}</h1>
             <p className="lp-text-lead">{copy.subheading}</p>
           </div>
         </div>
       </section>
 
       <section className="lp-section lp-section-light">
-        <div className="lp-container" style={{ maxWidth: '900px', display: 'grid', gap: '1rem' }}>
+        <div className="lp-container lp-legal-shell">
           <section className="lp-card" data-reveal>
             <iframe
               src="https://tally.so/embed/jaQa76?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
@@ -52,23 +52,44 @@ export default async function QuotePage({ params }: QuotePageProps) {
           </section>
 
           <section className="lp-card" data-reveal>
-            <h2 style={{ fontSize: '2rem', marginBottom: '0.8rem' }}>FAQ</h2>
-            <ul style={{ margin: 0, paddingLeft: '1.1rem', display: 'grid', gap: '0.5rem' }}>
+            <h2 className="lp-faq-title">FAQ</h2>
+            <ul className="lp-inline-list">
               {copy.faq.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
           </section>
+
+          <section className="lp-card" data-reveal>
+            <h2 className="lp-faq-title">{isFr ? 'Ce qui se passe ensuite' : 'What happens next'}</h2>
+            <ul className="lp-inline-list">
+              <li>
+                {isFr
+                  ? '1) Confirmation de reception de votre demande.'
+                  : '1) We confirm that your request was received.'}
+              </li>
+              <li>
+                {isFr
+                  ? '2) Retour rapide avec format recommande et tarif.'
+                  : '2) Fast reply with a recommended format and pricing.'}
+              </li>
+              <li>
+                {isFr
+                  ? '3) Validation finale du planning et des conditions.'
+                  : '3) Final confirmation of timing and conditions.'}
+              </li>
+            </ul>
+          </section>
         </div>
       </section>
 
-      <section className="lp-section lp-section-green">
-        <div className="lp-container lp-grid lp-grid-2" style={{ alignItems: 'center' }}>
+      <section className="lp-section lp-section-dark">
+        <div className="lp-container lp-grid lp-grid-2 lp-dark-feature">
           <div>
-            <h2 className="lp-section-title" style={{ color: 'var(--color-text-on-dark)' }}>
+            <h2 className="lp-section-title lp-section-title-light">
               {isFr ? 'Organisation claire avant confirmation' : 'Clear planning before confirmation'}
             </h2>
-            <p className="lp-text-lead" style={{ color: 'color-mix(in srgb, var(--color-text-on-dark) 92%, transparent)', marginBottom: '1.2rem' }}>
+            <p className="lp-text-lead lp-text-light lp-live-text">
               {isFr
                 ? 'Nous clarifions format, timing, prix et conditions avant validation finale.'
                 : 'We clarify format, timing, pricing, and conditions before final confirmation.'}
@@ -77,12 +98,16 @@ export default async function QuotePage({ params }: QuotePageProps) {
               {isFr ? 'Voir la FAQ' : 'View FAQ'}
             </Link>
           </div>
-          <div className="lp-card">
+
+          <div className="quote-box">
             <img src={withBasePath('/images/lapistoule-temp/chai-barrels-background.jpg')} alt="Wine cellar" className="lp-card-image" />
-            <p style={{ margin: 0 }}>
+            <p className="quote-text">
               {isFr
                 ? '"Un devis clair et rapide, sans surprises avant la date evenement."'
                 : '"A clear, fast proposal with no surprises before the event date."'}
+            </p>
+            <p className="quote-attribution">
+              {isFr ? 'Contact direct: contact@toulouse-wine-trips.fr' : 'Direct contact: contact@toulouse-wine-trips.fr'}
             </p>
           </div>
         </div>

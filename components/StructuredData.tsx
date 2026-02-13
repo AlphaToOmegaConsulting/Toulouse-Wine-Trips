@@ -9,7 +9,7 @@ export default function StructuredData({ siteUrl }: StructuredDataProps) {
     '@id': `${siteUrl}/#organization`,
     name: 'Toulouse Wine Trips',
     url: siteUrl,
-    email: 'contact@manaka-japanese.fr',
+    email: 'contact@toulouse-wine-trips.fr',
     areaServed: ['Toulouse, France'],
     availableLanguage: ['en', 'fr'],
   };

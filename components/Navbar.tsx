@@ -49,9 +49,7 @@ const Navbar: React.FC = () => {
     <header className={`lp-header ${isScrolled ? 'lp-scrolled' : ''}`}>
       <div className="lp-container lp-header-row">
         <Link href={homePath} className="lp-brand" aria-label="TWT home">
-          <span className="lp-brand-main">TWT</span>
-          <span className="lp-brand-sub">Curated Experiences</span>
-          <span className="lp-brand-accent" aria-hidden="true" />
+          <img className="lp-brand-logo" src={withBasePath('/images/site-logo.png')} alt="Toulouse Wine Trips logo" />
         </Link>
 
         <nav className="lp-nav" aria-label="Main navigation">
@@ -64,15 +62,17 @@ const Navbar: React.FC = () => {
 
         <div className="lp-header-actions">
           <div className="lp-lang-group">
-            {languageOptions.map((option) => (
-              <Link
-                key={option.lang}
-                href={getLanguageSwitchHref(option.lang)}
-                aria-label={`Switch to ${option.label}`}
-                className={`lp-lang-btn ${currentLang === option.lang ? 'lp-current' : ''}`}
-              >
-                <span aria-hidden="true">{option.code}</span>
-              </Link>
+            {languageOptions.map((option, index) => (
+              <React.Fragment key={option.lang}>
+                {index > 0 ? <span className="lp-lang-separator" aria-hidden="true">|</span> : null}
+                <Link
+                  href={getLanguageSwitchHref(option.lang)}
+                  aria-label={`Switch to ${option.label}`}
+                  className={`lp-lang-btn ${currentLang === option.lang ? 'lp-current' : ''}`}
+                >
+                  <span aria-hidden="true">{option.code}</span>
+                </Link>
+              </React.Fragment>
             ))}
           </div>
 
@@ -100,15 +100,8 @@ const Navbar: React.FC = () => {
           <div className="mobile-menu-footer">
             <a href="tel:+33600000000">+33 6 00 00 00 00</a>
             <a href="mailto:contact@toulouse-wine-trips.fr">contact@toulouse-wine-trips.fr</a>
-            <p style={{ margin: 0, opacity: 0.8 }}>Toulouse, France</p>
-            <div className="flex gap-4 mt-1">
-              <a href="#" aria-label="Instagram">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c3.2 0 3.6 0 4.9.1 3.2.1 4.8 1.7 4.9 4.9.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-3.2-.1-4.8-1.7-4.9-4.9C2 15.6 2 15.2 2 12s0-3.6.1-4.9c.1-3.2 1.7-4.8 4.9-4.9C8.4 2 8.8 2 12 2zm0 5.8A4.2 4.2 0 1 0 16.2 12 4.2 4.2 0 0 0 12 7.8zm0 6.9A2.7 2.7 0 1 1 14.7 12 2.7 2.7 0 0 1 12 14.7zm5.4-7.9a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"/></svg>
-              </a>
-              <a href="#" aria-label="Facebook">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13 3h4V0h-4a5 5 0 0 0-5 5v3H5v4h3v9h4v-9h4l1-4h-5V5a1 1 0 0 1 1-1z"/></svg>
-              </a>
-            </div>
+            <p className="lp-mobile-muted">Toulouse, France</p>
+            <p className="lp-mobile-muted">{currentLang === 'fr' ? 'Reseaux sociaux en mise a jour' : 'Social links are being updated'}</p>
           </div>
         </div>
       </div>

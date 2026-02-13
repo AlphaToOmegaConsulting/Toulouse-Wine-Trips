@@ -17,7 +17,7 @@ const content: Record<Lang, { title: string; description: string; updated: strin
       'Data collected: contact details and event request details.',
       'Purpose: respond to quote requests and organize services.',
       'Third-party tools: Tally form and embedded services may process data under their own policies.',
-      'Contact: contact@manaka-japanese.fr',
+      'Contact: contact@toulouse-wine-trips.fr',
     ],
   },
   fr: {
@@ -29,7 +29,7 @@ const content: Record<Lang, { title: string; description: string; updated: strin
       'Donnees collectees: coordonnees et details de la demande.',
       'Objectif: repondre aux demandes et organiser le service.',
       'Outils tiers: Tally et autres services integres appliquent leurs propres politiques.',
-      'Contact: contact@manaka-japanese.fr',
+      'Contact: contact@toulouse-wine-trips.fr',
     ],
   },
 };
@@ -59,12 +59,10 @@ export default async function LocalizedPrivacyPage({ params }: PageProps) {
       </section>
 
       <section className="lp-section lp-section-light">
-        <article className="lp-container" style={{ maxWidth: '900px', display: 'grid', gap: '1rem' }}>
+        <article className="lp-container lp-legal-shell">
           <section className="lp-card">
-            <p style={{ marginTop: 0, marginBottom: '0.8rem', color: 'var(--color-primary)', textTransform: 'uppercase', letterSpacing: '0.12em', fontSize: '0.8rem' }}>
-              {copy.updated}
-            </p>
-            <ul style={{ margin: 0, paddingLeft: '1.1rem', display: 'grid', gap: '0.45rem' }}>
+            <p className="lp-meta-note">{copy.updated}</p>
+            <ul className="lp-inline-list">
               {copy.bullets.map((item) => (
                 <li key={item}>{item}</li>
               ))}
