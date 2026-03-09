@@ -1,0 +1,12 @@
+#:schema https://developers.openai.com/codex/config-schema.json
+
+# Project-scoped Codex settings for this repository.
+# Keep this file minimal. Repository instructions live in AGENTS.md.
+
+personality = "pragmatic"
+project_doc_max_bytes = 49152
+
+[features]
+unified_exec = true
+sqlite = true
+

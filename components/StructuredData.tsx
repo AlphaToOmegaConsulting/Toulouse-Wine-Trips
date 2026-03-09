@@ -9,7 +9,7 @@ export default function StructuredData({ siteUrl }: StructuredDataProps) {
     '@id': `${siteUrl}/#organization`,
     name: 'Toulouse Wine Trips',
     url: siteUrl,
-    email: 'contact@toulouse-wine-trips.fr',
+    email: 'contact@toulousewinetrips.com',
     areaServed: ['Toulouse, France'],
     availableLanguage: ['en', 'fr'],
   };

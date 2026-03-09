@@ -17,7 +17,7 @@ const content: Record<Lang, { title: string; description: string; updated: strin
       'Data collected: contact details and event request details.',
       'Purpose: respond to quote requests and organize services.',
       'Third-party tools: Tally form and embedded services may process data under their own policies.',
-      'Contact: contact@toulouse-wine-trips.fr',
+      'Contact: contact@toulousewinetrips.com',
     ],
   },
   fr: {
@@ -29,7 +29,7 @@ const content: Record<Lang, { title: string; description: string; updated: strin
       'Donnees collectees: coordonnees et details de la demande.',
       'Objectif: repondre aux demandes et organiser le service.',
       'Outils tiers: Tally et autres services integres appliquent leurs propres politiques.',
-      'Contact: contact@toulouse-wine-trips.fr',
+      'Contact: contact@toulousewinetrips.com',
     ],
   },
 };

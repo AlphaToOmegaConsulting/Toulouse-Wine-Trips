@@ -17,7 +17,7 @@ const content: Record<Lang, { title: string; description: string; updated: strin
       'Services are confirmed only after both sides agree to scope, schedule, and pricing.',
       'Quote details include payment terms and cancellation terms.',
       'You agree to provide accurate booking details.',
-      'Questions: contact@toulouse-wine-trips.fr',
+      'Questions: contact@toulousewinetrips.com',
     ],
   },
   fr: {
@@ -29,7 +29,7 @@ const content: Record<Lang, { title: string; description: string; updated: strin
       'Les services sont confirmes apres accord sur le perimetre, la date et le tarif.',
       'Le devis inclut conditions de paiement et annulation.',
       'Vous devez fournir des informations de reservation exactes.',
-      'Questions: contact@toulouse-wine-trips.fr',
+      'Questions: contact@toulousewinetrips.com',
     ],
   },
 };

@@ -107,7 +107,7 @@ export default async function QuotePage({ params }: QuotePageProps) {
                 : '"A clear, fast proposal with no surprises before the event date."'}
             </p>
             <p className="quote-attribution">
-              {isFr ? 'Contact direct: contact@toulouse-wine-trips.fr' : 'Direct contact: contact@toulouse-wine-trips.fr'}
+              {isFr ? 'Contact direct: contact@toulousewinetrips.com' : 'Direct contact: contact@toulousewinetrips.com'}
             </p>
           </div>
         </div>

@@ -99,7 +99,7 @@ const Navbar: React.FC = () => {
 
           <div className="mobile-menu-footer">
             <a href="tel:+33600000000">+33 6 00 00 00 00</a>
-            <a href="mailto:contact@toulouse-wine-trips.fr">contact@toulouse-wine-trips.fr</a>
+            <a href="mailto:contact@toulousewinetrips.com">contact@toulousewinetrips.com</a>
             <p className="lp-mobile-muted">Toulouse, France</p>
             <p className="lp-mobile-muted">{currentLang === 'fr' ? 'Reseaux sociaux en mise a jour' : 'Social links are being updated'}</p>
           </div>

@@ -10,7 +10,7 @@ const basePath =
     : isGithubActions && useRepoBasePath && repositoryName
       ? `/${repositoryName}`
       : "";
-const defaultSiteUrl = "https://manakatakaishi.me";
+const defaultSiteUrl = "https://toulousewinetrips.com";
 
 const nextConfig: NextConfig = {
   output: "export",

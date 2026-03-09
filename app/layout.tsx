@@ -7,7 +7,7 @@ import StructuredData from '@/components/StructuredData';
 import './globals.css';
 import ScrollReveal from '@/components/ScrollReveal';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://toulouse-wine-trips.fr';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://toulousewinetrips.com';
 const isDev = process.env.NODE_ENV !== 'production';
 const scriptSrc = [
   "'self'",

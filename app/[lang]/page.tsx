@@ -257,8 +257,8 @@ export default async function LocalizedHomePage({ params }: PageProps) {
               </p>
               <p className="contact-item">
                 <span className="contact-label">Email:</span>
-                <a className="contact-value contact-link" href="mailto:contact@toulouse-wine-trips.fr">
-                  contact@toulouse-wine-trips.fr
+                <a className="contact-value contact-link" href="mailto:contact@toulousewinetrips.com">
+                  contact@toulousewinetrips.com
                 </a>
               </p>
               <p className="contact-item">

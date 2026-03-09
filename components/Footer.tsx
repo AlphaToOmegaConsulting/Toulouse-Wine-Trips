@@ -67,7 +67,7 @@ const Footer: React.FC = () => {
               <p><span className="lp-footer-label">{footerCopy.locationLabel(currentLang)}:</span> {footerCopy.locationValue(currentLang)}</p>
               <p>
                 <span className="lp-footer-label">{footerCopy.emailLabel(currentLang)}:</span>{' '}
-                <a href="mailto:contact@toulouse-wine-trips.fr">contact@toulouse-wine-trips.fr</a>
+                <a href="mailto:contact@toulousewinetrips.com">contact@toulousewinetrips.com</a>
               </p>
               <p>
                 <span className="lp-footer-label">{phoneLabel}:</span>{' '}

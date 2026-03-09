@@ -3,7 +3,7 @@ import type { MetadataRoute } from 'next';
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://toulouse-wine-trips.fr';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://toulousewinetrips.com';
   const now = new Date();
 
   const corePages = ['', '/about', '/tastings', '/trips', '/groups', '/partners', '/quote', '/faq', '/privacy', '/terms'];

@@ -102,8 +102,8 @@ const Booking: React.FC<BookingProps> = ({ lang = 'en' }) => {
                     <Icon name="mail" className="text-slate-400 text-sm" />
                     <p className="text-slate-900 font-bold uppercase tracking-widest text-[10px]">{bookingCopy.emailAddress(lang)}</p>
                   </div>
-                  <a href="mailto:contact@toulouse-wine-trips.fr" className="text-primary font-bold hover:underline">
-                    contact@toulouse-wine-trips.fr
+                  <a href="mailto:contact@toulousewinetrips.com" className="text-primary font-bold hover:underline">
+                    contact@toulousewinetrips.com
                   </a>
                 </div>
 

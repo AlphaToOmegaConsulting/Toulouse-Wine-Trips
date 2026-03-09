@@ -1,171 +1,129 @@
 <INSTRUCTIONS>
-# Customer-Safe Website Editor (Repo Rules)
+# Google Onboarding Mode (Repo Rules)
 
-This repository is a static-export **Next.js App Router** website deployed to **GitHub Pages**.
+This repository is currently in a development phase for Google business setup and onboarding work.
 
-Your job: help a non-technical customer request safe updates in plain language **without breaking the site**.
+Your job: help manage and complete setup for:
+- Google Business Profile
+- Google Search Console
+- Google Analytics 4
+- Google Tag Manager if needed
+- sitemap, robots, indexation, and access tracking
 
-## Communication style (customer-first, plain language)
-- Write for non-technical customers first.
-- Prefer everyday words over developer words.
-- Keep sentences short and concrete.
-- Avoid unexplained jargon, acronyms, and command names in customer-facing explanations.
+Do not default to customer-safe website editing behavior from the delivery phase. That workflow is preserved in `AGENTS.customer-website.md` for later use.
 
-### Vocabulary rules (must follow)
-- Do not use technical words when a plain alternative works.
-- Replace technical terms with simple wording whenever possible.
-  - `H1` -> “main page title”
-  - `hero` -> “top banner section”
-  - `tag` -> “code label” or “page element”
-  - `run` -> “start” or “check”
-  - `px` -> “pixel size (small unit for spacing/text size)”
-  - `vh` -> “screen-height unit (part of the screen height)”
-- If a technical term is necessary, always include:
-  1) a one-line plain-English meaning
-  2) how the customer can check it on the page (what to click/look for)
-- When sharing commands, briefly say what each command does in plain language.
+## Main working files
 
-## Non-negotiable approval gates (MUST FOLLOW)
+Use these as the source of truth first:
+- `.codex/tracking/toulousewinetrips-google-onboarding.md`
+- `.codex/tracking/toulousewinetrips-access-register.md`
+- `.codex/templates/google-onboarding-template.md`
+- `docs/toulousewinetrips_google_onboarding_guide.md`
 
-### Gate 1 — Plan approval (before any file changes)
-Before editing any file, you MUST reply with:
-1) **What I understood** (1–3 sentences rephrasing the request)
-2) **Proposed approach** (numbered steps)
-3) **Files I will change** (exact paths + plain explanation of what each file controls on the website)
-4) **Inputs I still need from you** (if any)
+Before proposing new onboarding work:
+1. check the tracker
+2. update status
+3. identify blockers
+4. suggest the next smallest useful step
+
+## Scope for this mode
+
+Default allowed work:
+- create and maintain onboarding checklists
+- record access and ownership status
+- prepare Google setup steps
+- review sitemap, robots, and indexation setup
+- review tracking setup needs
+- document missing information
+- create reusable onboarding templates
+
+Allowed website edits only when they directly support Google onboarding:
+- tracking installation
+- sitemap or robots adjustments
+- metadata or verification-related changes
+- lightweight SEO fixes needed for setup
+
+If a request is mainly about customer-facing site content, design, layout, images, or handoff support, treat that as a different mode and refer to `AGENTS.customer-website.md`.
+
+## Approval gates
+
+### Gate 1 — Plan approval before file edits
+Before editing any file, reply with:
+1) **What I understood**
+2) **Proposed approach**
+3) **Files I will change**
+4) **Inputs I still need from you**
 5) Ask: **Reply `APPROVE PLAN` or `GO` to proceed, or tell me what to change.**
 
-Do not modify any file until the customer replies exactly: `APPROVE PLAN` or `GO`.
+Do not modify files until the user replies exactly `APPROVE PLAN` or `GO`.
 
-### Visual check — Customer-first, Playwright only if needed
-For any change that affects what the website looks like (text, images, layout, styles):
-1) Make the approved change.
-2) Ask the customer to open the page in their own browser to confirm it looks right.
-3) Do not take screenshots by default.
-4) If the customer is not happy after the first try, then use Playwright screenshots (save under `output/playwright/`) to diagnose and fix.
-5) Screenshot viewport rule for this project: use the customer screen size by default. Current default is `1366x768` unless the customer gives a different size.
+### Gate 2 — Publish approval before commit or push
+After changes:
+1) summarize what changed
+2) explain any local preview or verification step if relevant
+3) report checks run and results
+4) ask: **Reply `APPROVE PUBLISH` to commit & push to `main`, or tell me changes.**
 
-When screenshots are used, you MUST do all of the following:
-1) **State the visual issue clearly** using this format:
-   - What I see
-   - Where on the page I see it
-   - Why this is incorrect based on the customer request
-2) **Tie the fix directly to the screenshot finding** using this sentence pattern:
-   - “Because I saw `<issue>` in `<page/section>`, I changed `<exact file + element>`.”
-3) **Show proof after the fix**:
-   - Take a new screenshot of the same area.
-   - Explain in plain words what is now different compared with the earlier screenshot.
-4) **Do not use vague completion wording** (for example “I adjusted spacing broadly”).
-   - Always name the exact page section and exact visible problem.
-5) If the screenshot does not clearly show the issue, ask the customer which area to prioritize before making another broad change.
+Do not commit or push until the user replies exactly `APPROVE PUBLISH`.
 
-### Gate 2 — Publish approval (before committing/pushing)
-After implementing the approved plan, you MUST:
-1) Summarize what changed (bullet list)
-2) Explain how to preview locally (`npm run dev`) and what to check in the browser
-3) Ask the customer to open the page and confirm it looks right
-4) Run required checks (see “Validation” below) and report results
-5) Ask: **Reply `APPROVE PUBLISH` to commit & push to `main`, or tell me changes.**
+## Working method
 
-Do not commit or push until the customer replies exactly: `APPROVE PUBLISH`.
+Preferred execution order:
+1. Google Business Profile status
+2. domain and DNS access path
+3. Search Console
+4. sitemap and robots
+5. GA4
+6. GTM decision
+7. SEO baseline
+8. documentation and reusable templates
 
-### Speed rule — Bundle small edits
-If the customer requests multiple small content updates, group them into one implementation pass before validation/publish approval.
+For each system:
+- check whether it already exists
+- record access status
+- record owner or admin if known
+- define the next action
+- mark done when complete
 
-## Local preview start rule (important)
-- For reliable local preview, the customer must start the preview from their own Terminal in Codex.
-- The assistant must always tell the customer this path to open Terminal:
-  - Click the Terminal button in Codex at the top-right of the screen.
-- This project uses one fixed preview port chosen at setup and never changes.
-- Fixed preview port for this project: `3011`.
-- The assistant must always use this same port unless the customer explicitly asks to change it.
-- The assistant must provide one exact copy/paste command in plain text:
-  - `npm run dev -- --port 3011`
-- The assistant must also provide the exact localhost link:
-  - `http://localhost:3011`
-- The assistant must clearly state:
-  - Only open the localhost link after the command starts with no error message.
-  - If an error message appears, copy/paste the full error in chat so the assistant can fix it.
-- The assistant must not claim the preview is reliably available unless the customer confirms their Terminal command started successfully.
+## Tracking rules
 
-## Default allowed scope (SAFE MODE)
-Unless the customer explicitly asks otherwise, allow **content-only** edits:
-- Update text (headings/paragraphs/buttons)
-- Update links, emails, hours, pricing values
-- Add/replace images in `public/images/`
-- Create a new page using an existing layout pattern
-- Update navigation and sitemap when a page is added/removed
-- Basic SEO metadata updates (title/description/canonical)
+- Keep live progress in `.codex/tracking/toulousewinetrips-google-onboarding.md`
+- Keep account and owner details in `.codex/tracking/toulousewinetrips-access-register.md`
+- When a step is blocked, write the blocker clearly and name what is missing
+- Prefer status words like `Done`, `Waiting`, `Next`, `Later`, `Blocked`
+- Do not scatter onboarding status across many files when one tracker can hold it
 
-If the customer asks for theme/layout changes, pause and treat it as **explicit scope expansion** and include extra caution in the plan.
+## Website constraints
 
-## Stack constraints (do not break these)
-- Do NOT edit build outputs: `out/`, `.next/`.
-- GitHub Pages uses a **basePath**. For local images, prefer:
-  - `withBasePath('/images/...')` from `lib/base-path.ts` for `<img src>`.
-  - For CSS/background URLs, ensure they work with basePath (prefer component-level `withBasePath` where possible).
-- When creating a new page route:
-  - add `app/<slug>/page.tsx`
-  - add it to `components/Navbar.tsx` and `components/Footer.tsx` if it should appear in nav
-  - add it to `app/sitemap.ts`
+- Do NOT edit build outputs: `out/`, `.next/`
+- Respect GitHub Pages basePath rules already used in the project
+- If tracking code or verification code is added, change the smallest safe file possible
+- If a structural website change is needed, explain why it is required for Google setup
 
-## Validation (fast + safe)
-For very small content-only edits inside existing sections (for example text/link/image swap), lint/build can be skipped during iteration.
+## Validation
 
-Run these commands and report success/failure when:
-- The change touches structure or behavior (new page, new component, nav/footer/sitemap, layout/style logic), or
-- You are about to publish to `main` (always run once before publish).
+Run these commands and report success or failure when:
+- the change affects structure or behavior
+- tracking code is installed
+- sitemap, robots, metadata, or routing are changed
+- you are about to publish
 
 Commands:
 - `npm run lint`
 - `npm run build`
 
-If a command fails, stop and propose a fix plan (Gate 1 again if it changes files).
+If checks fail, stop and present a fix plan before making more changes.
 
-## Where content lives (quick map)
-See:
-- `docs/CONTENT_MAP.md`
-- `docs/CUSTOMER_WORKFLOW.md`
+## Output style
 
-## Supported change recipes (high level)
-### 1) Update text
-- Find the relevant component from `docs/CONTENT_MAP.md`
-- Edit the smallest JSX block that contains the requested text
-- Keep styling consistent (Tailwind utility classes)
-
-### 2) Add/replace an image
-- Use non-technical language. When the customer says “replace this picture with this picture”, your first response must include:
-  - “Please put the new picture file into the `images_to_update` folder and tell me the file name.”
-  - Ask where it should appear (page + location).
-- Workflow:
-  - Customer drops **one** image file into `images_to_update/` (root folder).
-  - You rename it to the website standard format: `page-location.<ext>` (page + location, lowercase, dashes).
-    - Examples: `contact-top-right.png`, `about-hero.jpg`, `lessons-hero.png`
-  - You move/copy it into `public/images/` and update the page/component to use it.
-  - For GitHub Pages basePath compatibility, reference via `withBasePath('/images/<file>')` from `lib/base-path.ts` for `<img src>`.
-- Alt text (accessibility):
-  - Default: choose a short, plain description yourself (1 sentence, no marketing).
-  - If the customer provides alt text, use theirs.
-- Safety:
-  - Do not leave the customer’s original file name in the website. Always rename to the standard format.
-  - Do not edit what’s inside the picture (remove text, retouch, etc.) unless the customer explicitly asks.
-
-### 3) Create a new page
-- Ask for: slug, nav label (optional), page title, meta description, sections
-- Create `app/<slug>/page.tsx` with `export const metadata = {...}`
-- Update nav/footer/sitemap as needed
-
-### 4) Add a new section
-- Ask for: section title, content, and placement (“before/after what”)
-- Add a new `<section>` in the page component, or a new component under `components/` if reused
-
-### 5) Theme changes (explicit request only)
-- Colors: `app/globals.css` variables (`--color-primary`, etc.)
-- Fonts: `app/layout.tsx` (next/font) and `app/globals.css` theme variables
-- Background: `.zen-bg` in `app/globals.css`
+- Be concise and operational
+- Prefer checklist language and clear next actions
+- Separate `done`, `waiting`, `next`, and `blocked`
+- Avoid unnecessary website-design guidance unless the task clearly requires it
 
 ## Git / Publishing rules
-- Publishing target is `main` (GitHub Pages deploy runs on push).
-- Only push after `APPROVE PUBLISH`.
-- Prefer a single, clear commit message: `Update: <short summary>`.
+
+- Publishing target is `main`
+- Only push after `APPROVE PUBLISH`
+- Prefer a clear commit message such as `Update: google onboarding workflow`
 </INSTRUCTIONS>
