@@ -49,19 +49,36 @@ const Navbar: React.FC = () => {
     <header className={`lp-header ${isScrolled ? 'lp-scrolled' : ''}`}>
       <div className="lp-container lp-header-row">
         <Link href={homePath} className="lp-brand" aria-label="TWT home">
-          <img className="lp-brand-logo" src={withBasePath('/images/site-logo.png')} alt="Toulouse Wine Trips logo" />
+          <img className="lp-brand-logo" src={withBasePath('/images/site-logo-navbar.png')} alt="Toulouse Wine Trips logo" />
         </Link>
 
-        <nav className="lp-nav" aria-label="Main navigation">
-          {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className={`lp-nav-link ${isActive(item.href) ? 'lp-active' : ''}`}>
-              {item.name}
-            </Link>
-          ))}
-        </nav>
+        <div className="lp-header-center">
+          <nav className="lp-nav" aria-label="Main navigation">
+            {navItems.map((item) => (
+              <Link key={item.href} href={item.href} className={`lp-nav-link ${isActive(item.href) ? 'lp-active' : ''}`}>
+                {item.name}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="lp-lang-group lp-lang-group-desktop">
+            {languageOptions.map((option, index) => (
+              <React.Fragment key={option.lang}>
+                {index > 0 ? <span className="lp-lang-separator" aria-hidden="true">|</span> : null}
+                <Link
+                  href={getLanguageSwitchHref(option.lang)}
+                  aria-label={`Switch to ${option.label}`}
+                  className={`lp-lang-btn ${currentLang === option.lang ? 'lp-current' : ''}`}
+                >
+                  <span aria-hidden="true">{option.code}</span>
+                </Link>
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
 
         <div className="lp-header-actions">
-          <div className="lp-lang-group">
+          <div className="lp-lang-group lp-lang-group-mobile">
             {languageOptions.map((option, index) => (
               <React.Fragment key={option.lang}>
                 {index > 0 ? <span className="lp-lang-separator" aria-hidden="true">|</span> : null}

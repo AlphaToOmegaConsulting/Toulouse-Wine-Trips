@@ -10,7 +10,23 @@ type WinePageProps = {
 
 export default function WinePage({ lang, data }: WinePageProps) {
   const isFr = lang === 'fr';
-  const heroImage = data.heroImage ?? '/images/lapistoule-temp/visits-hero.png';
+  const defaultHeroSlides = [
+    '/images/wine-tastings-top-banner-1.jpg',
+    '/images/wine-tastings-top-banner-2.jpg',
+    '/images/wine-tastings-top-banner-3.jpg',
+    '/images/wine-tastings-top-banner-4.jpg',
+    '/images/wine-tastings-top-banner-5.jpeg',
+    '/images/wine-tastings-top-banner-6.jpeg',
+  ];
+  const heroSlides = data.heroSlides?.length ? data.heroSlides : defaultHeroSlides;
+  const heroZoomClass =
+    data.heroZoomStyle === 'gentle'
+      ? 'lp-hero-bg-slideshow-gentle'
+      : data.heroZoomStyle === 'medium'
+        ? 'lp-hero-bg-slideshow-medium'
+        : '';
+  const slideDurationSeconds = 5;
+  const totalSlideDurationSeconds = heroSlides.length * slideDurationSeconds;
   const featureImage = data.featureImage ?? '/images/lapistoule-temp/visits-tasting.png';
   const highlightImage = data.highlightImage ?? '/images/lapistoule-temp/chai-barrels-background.jpg';
   const highlightTitle = data.highlightTitle ?? (isFr ? 'Pourquoi choisir Toulouse Wine Trips' : 'Why Toulouse Wine Trips');
@@ -39,12 +55,24 @@ export default function WinePage({ lang, data }: WinePageProps) {
         text: isFr ? 'Acces a des lieux et vignobles de confiance dans la region toulousaine.' : 'Access to trusted venues and vineyards around Toulouse.',
       },
     ];
+  const hasMixedOfferCards = data.sections.some((section) => section.image) && data.sections.some((section) => !section.image);
 
   return (
     <main>
-      <section className="lp-hero lp-hero-short">
-        <div className="lp-hero-bg">
-          <img src={withBasePath(heroImage)} alt={data.title} />
+      <section className="lp-hero">
+        <div className={`lp-hero-bg lp-hero-bg-slideshow ${heroZoomClass}`}>
+          {heroSlides.map((slide, index) => (
+            <img
+              key={slide}
+              src={withBasePath(slide)}
+              alt={data.title}
+              className="lp-hero-slide"
+              style={{
+                animationDelay: `${index * slideDurationSeconds}s`,
+                animationDuration: `${totalSlideDurationSeconds}s`,
+              }}
+            />
+          ))}
           <div className="lp-hero-overlay" />
           <div className="lp-hero-gradient" />
         </div>
@@ -62,48 +90,65 @@ export default function WinePage({ lang, data }: WinePageProps) {
         </div>
       </section>
 
-      <section className="lp-section lp-section-light">
+      <section className="lp-section lp-home-section lp-section-highlight lp-live-experience-section">
         <div className="lp-container lp-grid lp-grid-2 lp-live-grid">
-          <div data-reveal>
-            <span className="lp-section-kicker">{data.eyebrow}</span>
+          <div className="lp-live-copy lp-live-copy-clean" data-reveal>
             <h2 className="lp-section-title">{isFr ? 'Vision et execution' : 'Vision and execution'}</h2>
             <p className="lp-text-lead lp-live-text">
               {data.introQuote ?? (isFr
                 ? 'Nous appliquons un cadre premium inspire de l univers des domaines viticoles, adapte a vos objectifs de groupe.'
                 : 'We apply a premium framework inspired by vineyard domains, adapted to your group objectives.')}
             </p>
-            <Link href={getLocalizedPath(lang, data.ctaHref)} className="lp-btn lp-btn-outline-dark">
+            <Link href={getLocalizedPath(lang, data.ctaHref)} className="lp-btn lp-btn-primary lp-live-cta">
               {data.ctaLabel}
             </Link>
           </div>
 
-          <article className="lp-clean-card lp-card-hover" data-reveal>
+          <div className="quote-box lp-live-quote" data-reveal>
             <img src={withBasePath(featureImage)} alt={data.title} className="lp-card-image" />
-            <p className="lp-clean-card-text">{data.description}</p>
-          </article>
+            <blockquote className="quote-text">{data.description}</blockquote>
+            <p className="quote-attribution">{isFr ? 'Temoignage client' : 'Client feedback'}</p>
+          </div>
         </div>
       </section>
 
       <section className="lp-section lp-section-alt">
-        <div className="lp-container lp-page-grid">
+        <div className={`lp-container ${hasMixedOfferCards ? 'lp-grid lp-grid-3 lp-offers-grid' : 'lp-page-grid'}`}>
           {data.sections.map((section) => (
-            <article key={section.title} className="lp-clean-card lp-card-hover lp-page-grid-item" data-reveal>
+            <article
+              key={section.title}
+              className={`lp-clean-card lp-card-hover lp-page-grid-item lp-offer-card${section.image ? '' : ' lp-offer-card-no-image'}`}
+              data-reveal
+            >
               {section.image ? (
                 <div className="lp-clean-card-image-wrap">
                   <img src={withBasePath(section.image)} alt={section.title} className="card-image" />
                 </div>
-              ) : null}
-              <div className="lp-clean-card-content">
-                <h2 className="lp-clean-card-title">{section.title}</h2>
-                {section.price ? <p className="lp-clean-card-price" style={{ color: 'var(--color-primary)', fontWeight: 'bold', marginBottom: '0.5rem' }}>{section.price}</p> : null}
-                {section.body ? <p className="lp-clean-card-text">{section.body}</p> : null}
-                {section.bullets ? (
-                  <ul className="lp-inline-list">
-                    {section.bullets.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                ) : null}
+              ) : (
+                <p className="lp-meta-note">{isFr ? 'Format groupe' : 'Group format'}</p>
+              )}
+              <div className="lp-clean-card-content lp-offer-card-content">
+                <div className="lp-offer-card-body">
+                  <h2 className="lp-clean-card-title">{section.title}</h2>
+                  {section.price ? <p className="lp-clean-card-price" style={{ color: 'var(--color-primary)', fontWeight: 'bold', marginBottom: '0.5rem' }}>{section.price}</p> : null}
+                  {section.body ? <p className="lp-clean-card-text">{section.body}</p> : null}
+                  {section.bullets ? (
+                    <ul className="lp-inline-list">
+                      {section.bullets.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </div>
+                <div className="lp-offer-card-action">
+                  <Link href={getLocalizedPath(lang, data.ctaHref)} className="lp-btn lp-btn-outline-dark lp-offer-cta">
+                    {section.title.toLowerCase().includes('discovery')
+                      ? isFr ? 'Choisir Discovery' : 'Choose Discovery'
+                      : section.title.toLowerCase().includes('signature')
+                        ? isFr ? 'Choisir Signature' : 'Choose Signature'
+                        : isFr ? 'Demander un devis groupe' : 'Request group quote'}
+                  </Link>
+                </div>
               </div>
             </article>
           ))}
@@ -112,7 +157,7 @@ export default function WinePage({ lang, data }: WinePageProps) {
 
       <section className="lp-section lp-section-light">
         <div className="lp-container">
-          <div className="lp-section-head" data-reveal>
+          <div className="lp-section-head lp-section-head-center" data-reveal>
             <span className="lp-section-kicker">{isFr ? 'Clarte operationnelle' : 'Operational clarity'}</span>
             <h2 className="lp-section-title">{isFr ? 'Ce que vous obtenez concretement' : 'What you get in practice'}</h2>
           </div>
@@ -146,11 +191,11 @@ export default function WinePage({ lang, data }: WinePageProps) {
         </div>
       </section>
 
-      <section className="lp-section lp-section-dark">
+      <section className="lp-section lp-section-highlight">
         <div className="lp-container lp-grid lp-grid-2 lp-dark-feature">
           <div data-reveal>
-            <h2 className="lp-section-title lp-section-title-light">{highlightTitle}</h2>
-            <p className="lp-text-lead lp-text-light lp-live-text">{highlightText}</p>
+            <h2 className="lp-section-title">{highlightTitle}</h2>
+            <p className="lp-text-lead lp-live-text">{highlightText}</p>
             <Link href={getLocalizedPath(lang, highlightCtaHref)} className="lp-btn lp-btn-primary">
               {highlightCtaLabel}
             </Link>

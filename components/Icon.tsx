@@ -20,7 +20,8 @@ type IconName =
   | 'menu_book'
   | 'trending_up'
   | 'laptop_mac'
-  | 'child_care';
+  | 'child_care'
+  | 'assignment';
 
 type IconProps = {
   name: IconName | string;
@@ -145,6 +146,14 @@ const Icon: React.FC<IconProps> = ({ name, className = '' }) => {
           <>
             <circle {...commonStrokeProps} cx="12" cy="7.8" r="2.7" />
             <path {...commonStrokeProps} d="M7.5 20a4.5 4.5 0 0 1 9 0M6 13.5l3 2m9-2-3 2" />
+          </>
+        );
+      case 'assignment':
+        return (
+          <>
+            <rect {...commonStrokeProps} x="6" y="5.2" width="12" height="15.8" rx="1.8" />
+            <path {...commonStrokeProps} d="M9.2 5.2h5.6a1.4 1.4 0 0 0-1.4-1.4h-2.8a1.4 1.4 0 0 0-1.4 1.4Z" />
+            <path {...commonStrokeProps} d="M9.2 10.2h5.6M9.2 13.4h5.6M9.2 16.6h3.8" />
           </>
         );
       default:

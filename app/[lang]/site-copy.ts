@@ -23,6 +23,8 @@ export type PageData = {
   ctaHref: string;
   heroSubtitle?: string;
   heroImage?: string;
+  heroSlides?: string[];
+  heroZoomStyle?: 'default' | 'gentle' | 'medium';
   featureImage?: string;
   introQuote?: string;
   highlightTitle?: string;
@@ -85,9 +87,9 @@ export const homeData: Record<Lang, PageData> = {
       {
         title: 'How it works',
         bullets: [
-          'Tell us your date, group size, and language.',
-          'Receive a tailored proposal with clear pricing.',
-          'Confirm and enjoy your curated wine experience.',
+          'Tell us your date, group size, and language',
+          'Receive a tailored proposal with clear pricing',
+          'Confirm and enjoy your curated wine experience',
         ],
       },
       {
@@ -134,6 +136,7 @@ export const tastingsData: Record<Lang, PageData> = {
     ctaHref: '/quote',
     heroSubtitle: 'Discovery and Signature formats',
     heroImage: '/images/lapistoule-temp/visits-hero.png',
+    heroZoomStyle: 'medium',
     featureImage: '/images/lapistoule-temp/visits-tasting.png',
     introQuote: 'Structured tasting formats designed for private groups, celebrations, and corporate teams.',
     highlightTitle: 'Tastings with premium structure',
@@ -186,6 +189,7 @@ export const tastingsData: Record<Lang, PageData> = {
     ctaHref: '/quote',
     heroSubtitle: 'Formats Discovery et Signature',
     heroImage: '/images/lapistoule-temp/visits-hero.png',
+    heroZoomStyle: 'medium',
     featureImage: '/images/lapistoule-temp/visits-tasting.png',
     introQuote: 'Des degustations structurees pour groupes prives, celebrations et equipes entreprise.',
     highlightTitle: 'Des degustations premium et fluides',
@@ -241,6 +245,14 @@ export const tripsData: Record<Lang, PageData> = {
     ctaHref: '/quote',
     heroSubtitle: 'Half-day and full-day formats',
     heroImage: '/images/lapistoule-temp/visits-hero.png',
+    heroSlides: [
+      '/images/wine-trips-top-banner-1.jpg',
+      '/images/wine-trips-top-banner-2.jpg',
+      '/images/wine-trips-top-banner-3.jpg',
+      '/images/wine-trips-top-banner-4.jpg',
+      '/images/wine-trips-top-banner-5.jpg',
+    ],
+    heroZoomStyle: 'gentle',
     featureImage: '/images/journey-toulouse.png',
     introQuote: 'Each trip is designed around your group profile, timing, and preferred wine style.',
     highlightTitle: 'Curated routes, clear logistics',
@@ -300,6 +312,14 @@ export const tripsData: Record<Lang, PageData> = {
     ctaHref: '/quote',
     heroSubtitle: 'Formats demi-journee et journee complete',
     heroImage: '/images/lapistoule-temp/visits-hero.png',
+    heroSlides: [
+      '/images/wine-trips-top-banner-1.jpg',
+      '/images/wine-trips-top-banner-2.jpg',
+      '/images/wine-trips-top-banner-3.jpg',
+      '/images/wine-trips-top-banner-4.jpg',
+      '/images/wine-trips-top-banner-5.jpg',
+    ],
+    heroZoomStyle: 'gentle',
     featureImage: '/images/journey-toulouse.png',
     introQuote: 'Chaque sortie est construite selon votre profil groupe, votre timing et vos objectifs.',
     highlightTitle: 'Itineraires cibles, logistique claire',
